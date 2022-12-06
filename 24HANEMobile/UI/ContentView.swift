@@ -23,11 +23,15 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if isSigned.page == "beforeSignIn" {
-                SignInWebView(url:URL(string:"https://api.24hoursarenotenough.42seoul.kr/user/login/42?redirect=42")!, showWebView: $isSignedIn, isSigned: isSigned)
-                    .onDisappear{
-                        print("isSignedIn\(isSignedIn)")
-                        print(getTokenfromFile())
-                    }
+                SignInWebView(
+                    url: URL(string:"https://api.24hoursarenotenough.42seoul.kr/user/login/42?redirect=42")!,
+                    showWebView: $isSignedIn,
+                    isSigned: isSigned
+                )
+                .onDisappear{
+                    print("isSignedIn\(isSignedIn)")
+                    print(getTokenfromFile())
+                }
             } else if isSigned.page == "afterSignIn" {
                 VStack{
                     if loadData == false {
@@ -38,7 +42,7 @@ struct ContentView: View {
                             DetailView(inOutLogs: monthLogs, selectedDay: date.day)
                         }
                         .tabViewStyle(.page)
-                        .indexViewStyle(.page(backgroundDisplayMode: .never))
+                        .indexViewStyle(.page(backgroundDisplayMode: .always))
                     }
                 }
                 .onAppear{
@@ -65,14 +69,15 @@ struct ContentView: View {
             }
         }
         .onAppear{
-            if isSignIn(apihandler: apihandler) == true {
-                print("true")
-                isSignedIn = true
-            } else {
-                print("false")
-                isSignedIn = false
-
-            }
+            isSignedIn = isSignIn(apihandler: apihandler) ? true : false
+//            if isSignIn(apihandler: apihandler) == true {
+//                print("true")
+//                isSignedIn = true
+//            } else {
+//                print("false")
+//                isSignedIn = false
+//
+//            }
         }
     }
 }
