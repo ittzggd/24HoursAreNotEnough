@@ -32,8 +32,8 @@ struct DailyView: View {
                         .font(.system(size: 17, weight: .regular, design: .rounded))
                         .foregroundColor(Color.textfordata)
                     Menu{
-                        Picker(selection: $selectionOption){
-                            ForEach(1 ..< options.count + 1){ times in
+                        Picker(selection: $selectionOption) {
+                            ForEach(1 ..< options.count + 1) { times in
                                 Text("\(Int(options[times - 1]))")
                             }
                         } label: {}

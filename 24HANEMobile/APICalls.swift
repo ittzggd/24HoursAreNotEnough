@@ -10,8 +10,8 @@ import SwiftUI
 
 class APIHandler: ObservableObject {
     @Published var userInfo: mainInfo = mainInfo.sample
-    @Published var monthLogs: perMonth = perMonth.sample
     @Published var dayLogs: perDay = perDay.sample
+    @Published var monthLogs: perMonth = perMonth.sample
     @Published var accTime: accumationTimes = accumationTimes.sample
     
     func isLogIn(token: String) -> Bool {
