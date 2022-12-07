@@ -12,8 +12,14 @@ struct MainView: View {
     @Binding var inoutState: Bool
     var body: some View {
         VStack{
-            FirstPageHeaderView()
+            HeaderView()
                 .frame(height: 80)
+            HStack{
+                Text("  24HoursAreNotEnough")
+                    .font(.system(size: 20, weight: .light, design: .default))
+                    .foregroundColor(Color.LogoColor)
+                Spacer()
+            }
             Spacer(minLength: 0)
             HStack{
                 Text("    Today")

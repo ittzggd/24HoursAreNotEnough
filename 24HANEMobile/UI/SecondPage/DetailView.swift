@@ -23,8 +23,10 @@ struct DetailView: View {
     }
     
     var body: some View {
-        VStack(alignment: .center){
-            SecondPageHeaderView()
+        VStack(){
+            HeaderView()
+                .frame(height: 80)
+            Spacer(minLength: 0)
             CalendarView(logTimeColor: calculateLogColor(timeLogs: groupedLogs, year: date.year, month: date.month)){ day in
                 selectedDay = day
             }
