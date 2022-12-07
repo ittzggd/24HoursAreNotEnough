@@ -55,6 +55,7 @@ struct SignInWebView: UIViewRepresentable {
                             if ret == true {
                                 print("hi from webview token saved")
                                 self.isSigned.page = "afterSignIn"
+                                self.showWebView = true
                             }
                         }
                     }

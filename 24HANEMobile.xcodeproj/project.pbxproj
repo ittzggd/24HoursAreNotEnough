@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E38F522294052980027FFED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E38F521294052980027FFED /* NetworkManager.swift */; };
 		0EC3426629385E4900935E97 /* dateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC3426529385E4900935E97 /* dateExtension.swift */; };
 		0EC3426829386E7800935E97 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC3426729386E7800935E97 /* DetailView.swift */; };
 		0EC3426C29386F2700935E97 /* TagLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC3426B29386F2700935E97 /* TagLogView.swift */; };
@@ -33,7 +34,7 @@
 		0EEE04DC2935FFE400BAF824 /* CircularProgressbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04DB2935FFE400BAF824 /* CircularProgressbarView.swift */; };
 		0EEE04DE293600AE00BAF824 /* DailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04DD293600AE00BAF824 /* DailyView.swift */; };
 		0EEE04E02936012700BAF824 /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04DF2936012700BAF824 /* MonthlyView.swift */; };
-		0EEE04E22936016400BAF824 /* FirstPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04E12936016400BAF824 /* FirstPageHeaderView.swift */; };
+		0EEE04E22936016400BAF824 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04E12936016400BAF824 /* HeaderView.swift */; };
 		0EEE04E52936049600BAF824 /* AccumulationTimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04E42936049600BAF824 /* AccumulationTimeFormat.swift */; };
 		0EEE04E729360D7300BAF824 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04E629360D7300BAF824 /* LoadingView.swift */; };
 		0EEE04E92936184D00BAF824 /* ColorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04E82936184D00BAF824 /* ColorState.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E38F521294052980027FFED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0EC3426529385E4900935E97 /* dateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateExtension.swift; sourceTree = "<group>"; };
 		0EC3426729386E7800935E97 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0EC3426B29386F2700935E97 /* TagLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLogView.swift; sourceTree = "<group>"; };
@@ -70,7 +72,7 @@
 		0EEE04DB2935FFE400BAF824 /* CircularProgressbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressbarView.swift; sourceTree = "<group>"; };
 		0EEE04DD293600AE00BAF824 /* DailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyView.swift; sourceTree = "<group>"; };
 		0EEE04DF2936012700BAF824 /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
-		0EEE04E12936016400BAF824 /* FirstPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageHeaderView.swift; sourceTree = "<group>"; };
+		0EEE04E12936016400BAF824 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		0EEE04E42936049600BAF824 /* AccumulationTimeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccumulationTimeFormat.swift; sourceTree = "<group>"; };
 		0EEE04E629360D7300BAF824 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		0EEE04E82936184D00BAF824 /* ColorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorState.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				0EEE04CE2935FE7E00BAF824 /* APIJsonStruct.swift */,
 				0EEE04D02935FEB900BAF824 /* APICalls.swift */,
 				0EE69ECB293C6DEF00189663 /* UserData.swift */,
+				0E38F521294052980027FFED /* NetworkManager.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -171,7 +174,7 @@
 				0EEE04C12935FA4A00BAF824 /* ContentView.swift */,
 				0EE69ECD293C7DB900189663 /* isLoading.swift */,
 				0EEE04E629360D7300BAF824 /* LoadingView.swift */,
-				0EEE04E12936016400BAF824 /* FirstPageHeaderView.swift */,
+				0EEE04E12936016400BAF824 /* HeaderView.swift */,
 				0EC342792939FD0400935E97 /* SecondPageHeaderView.swift */,
 				0EC3427B293A016B00935E97 /* SignIn */,
 				0EEE04D82935FF8000BAF824 /* SecondPage */,
@@ -305,7 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EC3427429387F1800935E97 /* CalculateAccumulationTime.swift in Sources */,
-				0EEE04E22936016400BAF824 /* FirstPageHeaderView.swift in Sources */,
+				0EEE04E22936016400BAF824 /* HeaderView.swift in Sources */,
 				0EE69ECC293C6DEF00189663 /* UserData.swift in Sources */,
 				0EEE04DE293600AE00BAF824 /* DailyView.swift in Sources */,
 				0EC3427D293A018D00935E97 /* SignInWebView.swift in Sources */,
@@ -322,6 +325,7 @@
 				0EEE04E729360D7300BAF824 /* LoadingView.swift in Sources */,
 				0EEE04DC2935FFE400BAF824 /* CircularProgressbarView.swift in Sources */,
 				0EC342722938758C00935E97 /* PickedDataView.swift in Sources */,
+				0E38F522294052980027FFED /* NetworkManager.swift in Sources */,
 				0EEE04EB2938590700BAF824 /* CalendarView.swift in Sources */,
 				0EC3426629385E4900935E97 /* dateExtension.swift in Sources */,
 				0EEE04C02935FA4A00BAF824 /* _4HANEMobileApp.swift in Sources */,
