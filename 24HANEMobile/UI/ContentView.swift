@@ -14,7 +14,7 @@ struct ContentView: View {
     @State private var inOutState = false
     @State private var date = Date()
     @ObservedObject var isSigned: IsSignedIn
-    @StateObject var network = NetworkManager()
+    @State var network = false
     @State private var showingAlert = !NetworkManager().isConnected
     
     @State private var loadData = false
@@ -70,20 +70,14 @@ struct ContentView: View {
                 }
             }
         }
-        .alert(isPresented: $showingAlert){
-            Alert(title: Text("Error"), message: Text("Network not connected"), 
-            dismissButton: .default(Text("Retry"), action: {}))
-        }
         .onAppear{
             isSignedIn = isSignIn(apihandler: apihandler) ? true : false
-//            if isSignIn(apihandler: apihandler) == true {
-//                print("true")
-//                isSignedIn = true
-//            } else {
-//                print("false")
-//                isSignedIn = false
-//
-//            }
+        }
+        .alert(isPresented: $showingAlert){
+            Alert(title: Text("Error"), message: Text("Network not connected"),
+            dismissButton: .default(Text("Retry"), action: {
+                network = true
+            }))
         }
     }
 }

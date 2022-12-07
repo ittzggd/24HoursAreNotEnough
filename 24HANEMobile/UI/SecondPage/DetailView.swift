@@ -7,8 +7,31 @@
 
 import SwiftUI
 
+func loadMonthLogs(year: String, month: String) async -> Array<inOutStamp>{
+    let token = getTokenfromFile()
+//      let request = URLRequest(url: URL(string: "https://httpbin.org/delay/2")!)
+    let url = "https://api.24hoursarenotenough.42seoul.kr/v1/tag-log/permonth"
+    var components = URLComponents(string: url)
+    let year = URLQueryItem(name: "year", value: year)
+    let month = URLQueryItem(name: "month", value: month)
+    components?.queryItems = [year, month]
+    let requrl = components?.url
+    var request = URLRequest(url: requrl!)
+    request.httpMethod = "GET"
+    request.allHTTPHeaderFields = [
+        "Authorization" : "Bearer \(token)"
+    ]
+    let (data, response) = try! await URLSession.shared.data(for: request)
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+       return [inOutStamp(inTimeStamp: 0, outTimeStamp: 0, durationSecond: 0)]
+    }
+    let decodedPerMonth =  try! await JSONDecoder().decode(perMonth.self, from: data)
+    
+    return decodedPerMonth.inOutLogs
+}
+
 struct DetailView: View {
-    var inOutLogs: Array<inOutStamp>
+    @State var inOutLogs: Array<inOutStamp>
     var groupedLogs: [String: inOutStamp] {
         get {
             return sumAccumulationTime(inoutStamp: inOutLogs)
@@ -25,6 +48,9 @@ struct DetailView: View {
     var body: some View {
         VStack(){
             HeaderView()
+                .refreshable{
+                    inOutLogs = await loadMonthLogs(year: "2022", month: "12")
+                }
                 .frame(height: 80)
             Spacer(minLength: 0)
             CalendarView(logTimeColor: calculateLogColor(timeLogs: groupedLogs, year: date.year, month: date.month)){ day in

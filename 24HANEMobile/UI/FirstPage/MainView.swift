@@ -6,13 +6,39 @@
 //
 
 import SwiftUI
+import Foundation
+
+enum MyError: Error{
+    case invalidURLString
+    case invalidServerResponse
+}
+
+func loadMore() async -> accumationTimes{
+    let token = getTokenfromFile()
+//      let request = URLRequest(url: URL(string: "https://httpbin.org/delay/2")!)
+    var request = URLRequest(url: URL(string: "https://api.24hoursarenotenough.42seoul.kr/v1/tag-log/accumulationTimes")!)
+    request.httpMethod = "GET"
+    request.allHTTPHeaderFields = [
+        "Authorization" : "Bearer \(token)"
+    ]
+    let (data, response) = try! await URLSession.shared.data(for: request)
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+       return accumationTimes(todayAccumationTime: 0, monthAccumationTime: 0)
+    }
+    let decodedAccumulationTimes =  try! await JSONDecoder().decode(accumationTimes.self, from: data)
+    
+    return decodedAccumulationTimes
+}
 
 struct MainView: View {
-    var accTime: accumationTimes
+    @State var accTime: accumationTimes
     @Binding var inoutState: Bool
     var body: some View {
         VStack{
             HeaderView()
+                .refreshable {
+                   accTime = await loadMore()
+                }
                 .frame(height: 80)
             HStack{
                 Text("  24HoursAreNotEnough")
@@ -39,6 +65,7 @@ struct MainView: View {
             Spacer()
         }
     }
+
 }
 
 struct MainView_Previews: PreviewProvider {

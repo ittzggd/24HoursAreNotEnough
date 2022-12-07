@@ -31,7 +31,7 @@ struct SecondPageHeaderView: View {
                         .resizable()
                         .frame(width: 25, height: 20)
                         .foregroundColor(.black)
-                } .padding()
+                } .padding()    
             }
             Divider()
             Text("")
