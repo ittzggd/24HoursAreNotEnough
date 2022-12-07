@@ -35,11 +35,11 @@ struct MainView: View {
     @Binding var inoutState: Bool
     var body: some View {
         VStack{
-//            HeaderView()
-//                .refreshable {
-//                   accTime = await loadMore()
-//                }
-//                .frame(height: 80)
+            HeaderView()
+                .refreshable {
+                   accTime = await loadMore()
+                }
+                .frame(height: 80)
             HStack{
                 Text("  24HoursAreNotEnough")
                     .font(.system(size: 20, weight: .light, design: .default))

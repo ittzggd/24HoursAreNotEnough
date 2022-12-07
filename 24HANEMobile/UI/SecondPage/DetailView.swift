@@ -47,11 +47,11 @@ struct DetailView: View {
     
     var body: some View {
         VStack(){
-//            HeaderView()
-//                .refreshable{
-//                    inOutLogs = await loadMonthLogs(year: "2022", month: "12")
-//                }
-//                .frame(height: 80)
+            HeaderView()
+                .refreshable{
+                    inOutLogs = await loadMonthLogs(year: "2022", month: "12")
+                }
+                .frame(height: 80)
             Spacer(minLength: 0)
             CalendarView(logTimeColor: calculateLogColor(timeLogs: groupedLogs, year: date.year, month: date.month)){ day in
                 selectedDay = day
