@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HeaderView: View {
+    @Environment(\.refresh) private var refresh
+    @State private var isLoading = false
+    
     var body: some View {
         HStack{
             VStack(alignment: .leading){
@@ -17,13 +20,23 @@ struct HeaderView: View {
                         .resizable()
                         .frame(width: 55, height:40)
                     Spacer()
-                    Button{
-                        print("Reload")
-                    } label:{
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                            .resizable()
-                            .frame(width: 30, height: 25)
-                            .foregroundColor(.black)
+                    if let refresh = refresh {
+                        if isLoading {
+                            ProgressView()
+                        } else {
+                            Button(){
+                                isLoading = true
+                                async{
+                                    await refresh()
+                                    isLoading = false
+                                }
+                            } label:{
+                                Image(systemName: "arrow.clockwise")
+                                    .resizable()
+                                    .frame(width: 23, height: 27)
+                                    .foregroundColor(.black)
+                            }
+                        }
                     }
                     Button{
                         print("Side menu")
