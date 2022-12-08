@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E38F522294052980027FFED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E38F521294052980027FFED /* NetworkManager.swift */; };
 		0EBE93B12941AB2A001EB518 /* isFirstTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE93B02941AB2A001EB518 /* isFirstTime.swift */; };
-		0EBE93B32941B8EA001EB518 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE93B22941B8EA001EB518 /* API.swift */; };
+		0EBE93B32941B8EA001EB518 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE93B22941B8EA001EB518 /* APIHandler.swift */; };
 		0EC3426629385E4900935E97 /* dateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC3426529385E4900935E97 /* dateExtension.swift */; };
 		0EC3426829386E7800935E97 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC3426729386E7800935E97 /* DetailView.swift */; };
 		0EC3426C29386F2700935E97 /* TagLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC3426B29386F2700935E97 /* TagLogView.swift */; };
@@ -29,7 +29,6 @@
 		0EEE04C42935FA4D00BAF824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EEE04C32935FA4D00BAF824 /* Assets.xcassets */; };
 		0EEE04C72935FA4D00BAF824 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EEE04C62935FA4D00BAF824 /* Preview Assets.xcassets */; };
 		0EEE04CF2935FE7E00BAF824 /* APIJsonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04CE2935FE7E00BAF824 /* APIJsonStruct.swift */; };
-		0EEE04D12935FEB900BAF824 /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04D02935FEB900BAF824 /* APICalls.swift */; };
 		0EEE04D62935FF3600BAF824 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04D52935FF3600BAF824 /* ColorExtension.swift */; };
 		0EEE04DA2935FFBC00BAF824 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04D92935FFBC00BAF824 /* MainView.swift */; };
 		0EEE04DC2935FFE400BAF824 /* CircularProgressbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04DB2935FFE400BAF824 /* CircularProgressbarView.swift */; };
@@ -46,7 +45,7 @@
 /* Begin PBXFileReference section */
 		0E38F521294052980027FFED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0EBE93B02941AB2A001EB518 /* isFirstTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isFirstTime.swift; sourceTree = "<group>"; };
-		0EBE93B22941B8EA001EB518 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		0EBE93B22941B8EA001EB518 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		0EC3426529385E4900935E97 /* dateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateExtension.swift; sourceTree = "<group>"; };
 		0EC3426729386E7800935E97 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0EC3426B29386F2700935E97 /* TagLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLogView.swift; sourceTree = "<group>"; };
@@ -68,7 +67,6 @@
 		0EEE04C32935FA4D00BAF824 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EEE04C62935FA4D00BAF824 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0EEE04CE2935FE7E00BAF824 /* APIJsonStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIJsonStruct.swift; sourceTree = "<group>"; };
-		0EEE04D02935FEB900BAF824 /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
 		0EEE04D52935FF3600BAF824 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		0EEE04D92935FFBC00BAF824 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0EEE04DB2935FFE400BAF824 /* CircularProgressbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressbarView.swift; sourceTree = "<group>"; };
@@ -162,8 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				0EEE04CE2935FE7E00BAF824 /* APIJsonStruct.swift */,
-				0EEE04D02935FEB900BAF824 /* APICalls.swift */,
-				0EBE93B22941B8EA001EB518 /* API.swift */,
+				0EBE93B22941B8EA001EB518 /* APIHandler.swift */,
 				0EE69ECB293C6DEF00189663 /* UserData.swift */,
 				0E38F521294052980027FFED /* NetworkManager.swift */,
 			);
@@ -332,7 +329,6 @@
 				0EC3426629385E4900935E97 /* dateExtension.swift in Sources */,
 				0EEE04C02935FA4A00BAF824 /* _4HANEMobileApp.swift in Sources */,
 				0EEE04EE29385B1B00BAF824 /* CalendarHelper.swift in Sources */,
-				0EEE04D12935FEB900BAF824 /* APICalls.swift in Sources */,
 				0EE69ECE293C7DB900189663 /* isLoading.swift in Sources */,
 				0EEE04E52936049600BAF824 /* AccumulationTimeFormat.swift in Sources */,
 				0EC342782939E43B00935E97 /* tagLogFormat.swift in Sources */,
@@ -340,7 +336,7 @@
 				0EEE04CF2935FE7E00BAF824 /* APIJsonStruct.swift in Sources */,
 				0EEE04D62935FF3600BAF824 /* ColorExtension.swift in Sources */,
 				0EC3427A2939FD0400935E97 /* SecondPageHeaderView.swift in Sources */,
-				0EBE93B32941B8EA001EB518 /* API.swift in Sources */,
+				0EBE93B32941B8EA001EB518 /* APIHandler.swift in Sources */,
 				0EBE93B12941AB2A001EB518 /* isFirstTime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -49,17 +49,21 @@ func calculateLogColor(timeLogs: [String: inOutStamp], year: Int, month: Int) ->
             switch accumulationTime{
             case 0 :
                 calendarBackGroudColor[idx] = Color.white
-            case 1 ... 21600 :
+            case 1 ... 10800 :
                 calendarBackGroudColor[idx] = Color.firstLevel
-            case 21601 ... 43200 :
+            case 10801 ... 21600 :
                 calendarBackGroudColor[idx] = Color.secondLevel
-            case 43201 ... 64800 :
+            case 21601 ... 32400 :
                 calendarBackGroudColor[idx] = Color.thirdLevel
-            case 64801 ... 86400 :
+            case 32401 ... 43200 :
                 calendarBackGroudColor[idx] = Color.fourthLevel
+            case 43201 ... 86400 :
+                calendarBackGroudColor[idx] = Color.fifthLevel
             default:
                 calendarBackGroudColor[idx] = Color.white
             }
+        } else {
+            calendarBackGroudColor[idx] = idx + 1 <= Date().day ? Color.white : Color.futureBackGround
         }
     }
     return calendarBackGroudColor

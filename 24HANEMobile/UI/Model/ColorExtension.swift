@@ -12,16 +12,18 @@ extension Color{
     static let progressbarText = Color(hex:"5A5C57")
     static let logTableBackground = Color(hex: "E0DFDF")
     static let checkInGreen = Color(hex: "03F346")
-    static let checkOutGray = Color(hex: "D9D9D9")
+    static let checkOutGray = Color(hex: "7E8997")
     static let firstLevel = Color(hex: "D1EDFA")
-    static let secondLevel = Color(hex: "7BD6FF")
+    static let secondLevel = Color(hex: "A1E8FF")
     static let thirdLevel = Color(hex : "3FC3FF")
     static let fourthLevel = Color(hex: "0097DC")
+    static let fifthLevel = Color(hex: "0070B4")
     static let cardBackground = Color(hex: "F3F2F9")
     static let textfordata = Color(hex: "1E3C5F")
     static let LogoColor = Color(hex: "1F5390")
     static let calendarDate = Color(hex: "959595")
-    
+    static let futureText = Color(hex: "D4D4D4")
+    static let futureBackGround = Color(hex: "FAFAFA")
 }
 
 extension Color{

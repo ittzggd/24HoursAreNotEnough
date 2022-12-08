@@ -22,7 +22,10 @@ struct HeaderView: View {
                     Spacer()
                     if let refresh = refresh {
                         if isLoading {
-                            ProgressView()
+                            VStack(alignment: .leading){
+                                ProgressView()
+                                    .frame(width: 27, height: 27)
+                            }
                         } else {
                             Button(){
                                 isLoading = true
@@ -31,10 +34,11 @@ struct HeaderView: View {
                                     isLoading = false
                                 }
                             } label:{
-                                Image(systemName: "arrow.clockwise")
+                                Image(systemName: "goforward")
                                     .resizable()
-                                    .frame(width: 23, height: 27)
+                                    .frame(width: 27, height: 27)
                                     .foregroundColor(.black)
+                                    .rotationEffect(.degrees(90))
                             }
                         }
                     }
