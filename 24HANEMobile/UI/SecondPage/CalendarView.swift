@@ -40,12 +40,13 @@ struct CalendarView: View {
             VStack(spacing: -40){
                 HStack{
                     Text("\(today.monthName)")
-                        .font(.system(size: 20, weight: .semibold, design: .default))
-                        .foregroundColor(Color.calendarDate)
+                        
                     Text("\(today.yearName)")
-                        .font(.system(size: 20, weight: .semibold, design: .default))
-                        .foregroundColor(Color.calendarDate)
+                    
                 }
+                .font(.system(size: 20, weight: .semibold, design: .default))
+                .foregroundColor(Color.calendarDate)
+                
                 LazyVGrid(columns: cols, spacing: 4){
                     ForEach((1...42), id: \.self){ dayNum in
                         if (dayNum > (0 + firstDayofMonth) && dayNum < (lastDayofMonth + firstDayofMonth + 1)) {

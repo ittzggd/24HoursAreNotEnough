@@ -8,7 +8,7 @@
 import SwiftUI
 
 func loadMonthLogs(year: String, month: String) async -> Array<inOutStamp>{
-    let token = getTokenfromFile()
+    let token = UserDefaults.standard.string(forKey: "Token")
 //      let request = URLRequest(url: URL(string: "https://httpbin.org/delay/2")!)
     let url = "https://api.24hoursarenotenough.42seoul.kr/v1/tag-log/permonth"
     var components = URLComponents(string: url)

@@ -20,7 +20,6 @@
 		0EC342782939E43B00935E97 /* tagLogFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC342772939E43B00935E97 /* tagLogFormat.swift */; };
 		0EC3427A2939FD0400935E97 /* SecondPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC342792939FD0400935E97 /* SecondPageHeaderView.swift */; };
 		0EC3427D293A018D00935E97 /* SignInWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC3427C293A018D00935E97 /* SignInWebView.swift */; };
-		0EC34282293A1F3000935E97 /* storeCookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC34281293A1F3000935E97 /* storeCookie.swift */; };
 		0EE69ECC293C6DEF00189663 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE69ECB293C6DEF00189663 /* UserData.swift */; };
 		0EE69ECE293C7DB900189663 /* isLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE69ECD293C7DB900189663 /* isLoading.swift */; };
 		0EE69ED1293C91E400189663 /* ViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE69ED0293C91E400189663 /* ViewInfo.swift */; };
@@ -57,7 +56,6 @@
 		0EC342772939E43B00935E97 /* tagLogFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tagLogFormat.swift; sourceTree = "<group>"; };
 		0EC342792939FD0400935E97 /* SecondPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPageHeaderView.swift; sourceTree = "<group>"; };
 		0EC3427C293A018D00935E97 /* SignInWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWebView.swift; sourceTree = "<group>"; };
-		0EC34281293A1F3000935E97 /* storeCookie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storeCookie.swift; sourceTree = "<group>"; };
 		0EE69ECB293C6DEF00189663 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		0EE69ECD293C7DB900189663 /* isLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isLoading.swift; sourceTree = "<group>"; };
 		0EE69ECF293C8DFD00189663 /* -4HANEMobile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "-4HANEMobile-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -113,7 +111,6 @@
 		0EC34280293A1F0B00935E97 /* Cookie */ = {
 			isa = PBXGroup;
 			children = (
-				0EC34281293A1F3000935E97 /* storeCookie.swift */,
 				0EE69ED0293C91E400189663 /* ViewInfo.swift */,
 			);
 			name = Cookie;
@@ -321,7 +318,6 @@
 				0EC342762938D0E700935E97 /* TimeDataView.swift in Sources */,
 				0EEE04E92936184D00BAF824 /* ColorState.swift in Sources */,
 				0EEE04C22935FA4A00BAF824 /* ContentView.swift in Sources */,
-				0EC34282293A1F3000935E97 /* storeCookie.swift in Sources */,
 				0EEE04DA2935FFBC00BAF824 /* MainView.swift in Sources */,
 				0EEE04E02936012700BAF824 /* MonthlyView.swift in Sources */,
 				0EE69ED1293C91E400189663 /* ViewInfo.swift in Sources */,

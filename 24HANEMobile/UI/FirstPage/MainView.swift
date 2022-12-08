@@ -14,7 +14,7 @@ enum MyError: Error{
 }
 
 func loadMore() async -> accumationTimes{
-    let token = getTokenfromFile()
+    let token = UserDefaults.standard.string(forKey: "Token")
 //      let request = URLRequest(url: URL(string: "https://httpbin.org/delay/2")!)
     var request = URLRequest(url: URL(string: "https://api.24hoursarenotenough.42seoul.kr/v1/tag-log/accumulationTimes")!)
     request.httpMethod = "GET"
