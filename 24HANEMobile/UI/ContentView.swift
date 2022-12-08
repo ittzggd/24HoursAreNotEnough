@@ -32,7 +32,6 @@ struct ContentView: View {
                 )
                 .onDisappear{
                     print("isSignedIn\(isSignedIn)")
-                    print(getTokenfromFile())
                 }
             } else if isSigned.page == "afterSignIn" {
                 VStack{
