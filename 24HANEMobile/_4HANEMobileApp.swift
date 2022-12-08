@@ -14,7 +14,7 @@ struct _4HANEMobileApp: App {
     var apiHandler = APIHandler()
     var body: some Scene {
         WindowGroup {
-            ContentView(isSigned: IsSignedIn())
+            ContentView(isSignedIn: IsSignedIn())
                 .environmentObject(isSigned)
                 .environmentObject(apiHandler)
         }

@@ -8,93 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var showMenu = false
     @EnvironmentObject var apiHandler: APIHandler
-    @State var isSignedIn = false
-    @State private var inOutState = false
-    @State private var date = Date()
-    @ObservedObject var isSigned: IsSignedIn
-    @State var network = false
-    @State private var showingAlert = !NetworkManager().isConnected
-    
-    @State private var loadData = false
+    @ObservedObject var isSignedIn: IsSignedIn
     
     var body: some View {
-        VStack {
-            if isSigned.page == "beforeSignIn" {
-                SignInWebView(
-                    url: URL(string:"https://api.24hoursarenotenough.42seoul.kr/user/login/42?redirect=42")!,
-                    showWebView: $isSignedIn,
-                    isSigned: isSigned
-                )
-                .onDisappear{
-                    print("isSignedIn\(isSignedIn)")
-                }
-            } else if isSigned.page == "afterSignIn" {
-                VStack{
-                    if loadData == false {
-                        isLoading()
-                    } else if loadData == true {
-                        HeaderView()
-                            .refreshable {
-                                do{
-                                    try await apiHandler.getMainInfo()
-                                } catch {
-                                    isSigned.page = "beforeSignIn"
-                                    print("error")
-                                }
-                                do{
-                                    try await apiHandler.getAccumulationTime()
-                                } catch {
-                                    isSigned.page = "beforeSignIn"
-                                    print("error")
-                                }
-                                do{
-                                    try await apiHandler.getMonthLogs(year: 2022, month: 12)
-                                } catch {
-                                    isSigned.page = "beforeSignIn"
-                                    print("error")
-                                }
-                            }
-                        TabView{
-                            MainView(inoutState: $inOutState)
-                                .environmentObject(apiHandler)
-                            DetailView(selectedDay: date.day)
+        let drag = DragGesture()
+                    .onEnded {
+                        if $0.translation.width > 100 {
+                            withAnimation {}
+                                self.showMenu = false
                         }
-                        .tabViewStyle(.page)
-                        .indexViewStyle(.page(backgroundDisplayMode: .always))
+                    }
+        VStack{
+            GeometryReader{ geometry in
+                ZStack(alignment: .trailing){
+                    MainView(isSigned: isSignedIn, showMenu: $showMenu)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                    if self.showMenu {
+                        SideMenuView()
+                            .frame(width: geometry.size.width/2)
+                            .transition(.move(edge: .trailing))
                     }
                 }
-                .task {
-                    do{
-                        try await apiHandler.getMainInfo()
-                    } catch {
-                        isSigned.page = "beforeSignIn"
-                        print("error")
-                    }
-                    do{
-                        try await apiHandler.getAccumulationTime()
-                    } catch {
-                        isSigned.page = "beforeSignIn"
-                        print("error")
-                    }
-                    do{
-                        try await apiHandler.getMonthLogs(year: 2022, month: 12)
-                    } catch {
-                        isSigned.page = "beforeSignIn"
-                        print("error")
-                    }
-                    loadData = true
-                }
+                .gesture(drag)
             }
         }
-        .onAppear{
-            isSignedIn = isSignIn(apihandler: apiHandler) ? true : false
-        }
-        .alert(isPresented: $showingAlert){
-            Alert(title: Text("Error"), message: Text("Network not connected"),
-            dismissButton: .default(Text("Retry"), action: {
-                network = true
-            }))
+        .onAppear(){
+            isSignedIn.isSignIn = isSignIn(apihandler: apiHandler) ? true : false
         }
     }
 }

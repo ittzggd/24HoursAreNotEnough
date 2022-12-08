@@ -8,10 +8,8 @@
 import SwiftUI
 import Foundation
 
-struct MainView: View {
+struct SummaryView: View {
     @EnvironmentObject var apiTmp: APIHandler
-
-    @Binding var inoutState: Bool
     var body: some View {
         VStack{
 
@@ -43,8 +41,8 @@ struct MainView: View {
 
 }
 
-struct MainView_Previews: PreviewProvider {
+struct Summary_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(inoutState: .constant(true))
+        SummaryView()
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HeaderView: View {
     @Environment(\.refresh) private var refresh
+    @Binding var showMenu: Bool
     @State private var isLoading = false
     
     var body: some View {
@@ -43,6 +44,7 @@ struct HeaderView: View {
                         }
                     }
                     Button{
+                        self.showMenu.toggle()
                         print("Side menu")
                     } label:{
                         Image(systemName: "line.3.horizontal")
@@ -60,6 +62,6 @@ struct HeaderView: View {
 
 struct Header_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView()
+        HeaderView(showMenu: .constant(true))
     }
 }
