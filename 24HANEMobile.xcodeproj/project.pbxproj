@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E38F522294052980027FFED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E38F521294052980027FFED /* NetworkManager.swift */; };
+		0EBE93B12941AB2A001EB518 /* isFirstTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE93B02941AB2A001EB518 /* isFirstTime.swift */; };
 		0EC3426629385E4900935E97 /* dateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC3426529385E4900935E97 /* dateExtension.swift */; };
 		0EC3426829386E7800935E97 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC3426729386E7800935E97 /* DetailView.swift */; };
 		0EC3426C29386F2700935E97 /* TagLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC3426B29386F2700935E97 /* TagLogView.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		0E38F521294052980027FFED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0EBE93B02941AB2A001EB518 /* isFirstTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isFirstTime.swift; sourceTree = "<group>"; };
 		0EC3426529385E4900935E97 /* dateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateExtension.swift; sourceTree = "<group>"; };
 		0EC3426729386E7800935E97 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0EC3426B29386F2700935E97 /* TagLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLogView.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				0EEE04ED29385B1B00BAF824 /* CalendarHelper.swift */,
+				0EBE93B02941AB2A001EB518 /* isFirstTime.swift */,
 				0EC3427329387F1800935E97 /* CalculateAccumulationTime.swift */,
 			);
 			path = Utils;
@@ -338,6 +341,7 @@
 				0EEE04CF2935FE7E00BAF824 /* APIJsonStruct.swift in Sources */,
 				0EEE04D62935FF3600BAF824 /* ColorExtension.swift in Sources */,
 				0EC3427A2939FD0400935E97 /* SecondPageHeaderView.swift in Sources */,
+				0EBE93B12941AB2A001EB518 /* isFirstTime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

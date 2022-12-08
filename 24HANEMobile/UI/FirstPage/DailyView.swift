@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct DailyView: View {
     var options: Array<Double> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
-    @State private var selectionOption =  0
+ 
+//
+    @AppStorage("DailySelectionOption") private var selectionOption =  UserDefaults.standard.integer(forKey: "DailySelectionOption")
+    
     var currentTime: Int64
     var body: some View {
         ZStack{
@@ -42,7 +46,7 @@ struct DailyView: View {
                             .font(.system(size: 35, weight: .medium, design: .default))
                             .foregroundColor(Color.textfordata)
                             .onAppear(){
-                                UserDefaults.standard.set(selectionOption, forKey: "DailyGoal")
+                                UserDefaults.standard.setValue(selectionOption, forKey: "DailySelectionOption")
                             }
 
                     }

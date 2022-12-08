@@ -39,6 +39,7 @@ struct ContentView: View {
                     if loadData == false {
                         isLoading()
                     } else if loadData == true {
+                        HeaderView()
                         TabView{
                             MainView(accTime: accTime, inoutState: $inOutState)
                             DetailView(inOutLogs: monthLogs, selectedDay: date.day)
@@ -49,20 +50,24 @@ struct ContentView: View {
                 }
                 .onAppear{
                     print("hi from loading")
-                    apihandler.getAccumulationTimes(token: getTokenfromFile()){(isSuccess, accumationTimes) in
+                    guard let Token = UserDefaults.standard.string(forKey: "Token") else {
+                        print("토큰 읎다")
+                        return
+                    }
+                    apihandler.getAccumulationTimes(token: Token){(isSuccess, accumationTimes) in
                       if isSuccess{
                           loadData = true
                       }
                        
                     }
-                    apihandler.getUserInfo(token: getTokenfromFile()){(isSuccess, mainInfo) in
+                    apihandler.getUserInfo(token: Token){(isSuccess, mainInfo) in
                       if isSuccess{
                         if info.inoutState == "in"{
                           inOutState = true
                         }
                       }
                     }
-                    apihandler.getMonthLogs(token: getTokenfromFile(), year: date.yearName, month: String(date.month)){(isSuccess, monthLogs) in
+                    apihandler.getMonthLogs(token: Token, year: date.yearName, month: String(date.month)){(isSuccess, monthLogs) in
                       if isSuccess{
                         print("success")
                       }

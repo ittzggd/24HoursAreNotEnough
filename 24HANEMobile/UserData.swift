@@ -8,14 +8,8 @@
 import Foundation
 
 func isSignIn(apihandler: APIHandler) -> Bool {
-    let tokenFromFile = getTokenfromFile()
-    if tokenFromFile == "The file “UserToken.txt” couldn’t be opened." {
+    guard let token = UserDefaults.standard.string(forKey: "Token") else {
         return false
-    } else {
-        if apihandler.isLogIn(token: tokenFromFile) == true {
-            return true
-        } else {
-            return false
-        }
     }
+    return apihandler.isLogIn(token: token)
 }

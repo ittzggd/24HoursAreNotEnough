@@ -92,15 +92,15 @@ struct tagLog: Identifiable, Codable{
     }
     static let sample = tagLog(id: UUID() , inTimeStamp: "", outTimeStamp: "", durationTime: "", date: "")
 }
-
-struct accTimes: Identifiable, Codable{
-    let id: UUID
-    var totalAccumulationTime: Int64
-    var date: String
-    
-    init(id: UUID = UUID(), totalAccumulationTime: Int64, date: String){
-        self.id = id
-        self.totalAccumulationTime = totalAccumulationTime
-        self.date = date
-    }
-}
+//
+//struct accTimes: Identifiable, Codable{
+//    let id: UUID
+//    var totalAccumulationTime: Int64
+//    var date: String
+//    
+//    init(id: UUID = UUID(), totalAccumulationTime: Int64, date: String){
+//        self.id = id
+//        self.totalAccumulationTime = totalAccumulationTime
+//        self.date = date
+//    }
+//}
