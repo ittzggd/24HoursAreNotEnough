@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var apihandler: APIHandler
+    @EnvironmentObject var apiTmp: APIHanderTmp
     @State var isSignedIn = false
     @State private var load = false
     @State private var inOutState = false
@@ -18,9 +19,9 @@ struct ContentView: View {
     @State private var showingAlert = !NetworkManager().isConnected
     
     @State private var loadData = false
-    var accTime: accumationTimes{apihandler.accTime}
-    var info: mainInfo{apihandler.userInfo}
-    var monthLogs: [inOutStamp]{apihandler.monthLogs.inOutLogs}
+    var accTime: accumationTimes{apiTmp.accTime}
+    var info: mainInfo{apiTmp.userInfo}
+    var monthLogs: [inOutStamp]{apiTmp.monthLogs.inOutLogs}
     
     var body: some View {
         VStack {
@@ -47,30 +48,53 @@ struct ContentView: View {
                         .indexViewStyle(.page(backgroundDisplayMode: .always))
                     }
                 }
+                .task {
+                    guard let Token = UserDefaults.standard.string(forKey: "Token") else {
+                        print("토큰 읎다")
+                        return
+                    }
+                    do{
+                        try await apiTmp.getMainInfo(token: Token)
+                    } catch {
+                        print("error")
+                    }
+                    do{
+                        try await apiTmp.getAccumulationTime(token: Token)
+                    } catch {
+                        print("error")
+                    }
+                    do{
+                        try await apiTmp.getMonthLogs(token: Token, year: 2022, month: 12)
+                    } catch {
+                        print("error")
+                    }
+                    loadData = true
+                }
                 .onAppear{
                     print("hi from loading")
                     guard let Token = UserDefaults.standard.string(forKey: "Token") else {
                         print("토큰 읎다")
                         return
                     }
-                    apihandler.getAccumulationTimes(token: Token){(isSuccess, accumationTimes) in
-                      if isSuccess{
-                          loadData = true
-                      }
-                       
-                    }
-                    apihandler.getUserInfo(token: Token){(isSuccess, mainInfo) in
-                      if isSuccess{
-                        if info.inoutState == "in"{
-                          inOutState = true
-                        }
-                      }
-                    }
-                    apihandler.getMonthLogs(token: Token, year: date.yearName, month: String(date.month)){(isSuccess, monthLogs) in
-                      if isSuccess{
-                        print("success")
-                      }
-                    }
+
+//                    apihandler.getAccumulationTimes(token: Token){(isSuccess, accumationTimes) in
+//                      if isSuccess{
+//                          loadData = true
+//                      }
+//
+//                    }
+//                    apihandler.getUserInfo(token: Token){(isSuccess, mainInfo) in
+//                      if isSuccess{
+//                        if info.inoutState == "in"{
+//                          inOutState = true
+//                        }
+//                      }
+//                    }
+//                    apihandler.getMonthLogs(token: Token, year: date.yearName, month: String(date.month)){(isSuccess, monthLogs) in
+//                      if isSuccess{
+//                        print("success")
+//                      }
+//                    }
                 }
             }
         }
