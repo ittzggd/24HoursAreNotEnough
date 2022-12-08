@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 struct MainView: View {
-    @EnvironmentObject var apiTmp: APIHanderTmp
+    @EnvironmentObject var apiTmp: APIHandler
 
     @Binding var inoutState: Bool
     var body: some View {
@@ -18,14 +18,14 @@ struct MainView: View {
             HStack{
                 Text("  24HoursAreNotEnough")
                     .font(.system(size: 20, weight: .light, design: .default))
-                    .foregroundColor(Color.LogoColor)
+                    .foregroundColor((apiTmp.userInfo.inoutState == "IN") ? Color.LogoColor : Color.checkOutGray)
                 Spacer()
             }
             Spacer(minLength: 0)
             HStack{
                 Text("    Today")
                     .font(.system(size: 20, weight: .medium, design: .default))
-                    .foregroundColor(Color.textfordata)
+                    .foregroundColor((apiTmp.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
                 Spacer()
             }
             DailyView(currentTime: self.apiTmp.accTime.todayAccumationTime)
@@ -33,7 +33,7 @@ struct MainView: View {
             HStack{
                 Text("    Month")
                     .font(.system(size: 20, weight: .medium, design: .default))
-                    .foregroundColor(Color.textfordata)
+                    .foregroundColor((apiTmp.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
                 Spacer()
             }
             MonthlyView(currentTime: self.apiTmp.accTime.monthAccumationTime)

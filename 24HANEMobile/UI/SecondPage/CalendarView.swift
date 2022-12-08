@@ -40,9 +40,7 @@ struct CalendarView: View {
             VStack(spacing: -40){
                 HStack{
                     Text("\(today.monthName)")
-                        
                     Text("\(today.yearName)")
-                    
                 }
                 .font(.system(size: 20, weight: .semibold, design: .default))
                 .foregroundColor(Color.calendarDate)
@@ -53,11 +51,15 @@ struct CalendarView: View {
                             Button(action: {
                                 onClick(dayNum - firstDayofMonth)
                             }) {
-                                Text("\(dayNum - firstDayofMonth)")
-                                    .font(.system(size: 20, weight: .bold))
-                                    .foregroundColor(Color.gray)
-                                    .frame(width: 40, height: 40)
-                                    .background(logTimeColor[dayNum - firstDayofMonth - 1])
+                                ZStack{
+                                    Rectangle()
+                                        .stroke(Color.checkOutGray)
+                                    Text("\(dayNum - firstDayofMonth)")
+                                        .font(.system(size: 20, weight: .bold))
+                                        .foregroundColor((dayNum - firstDayofMonth) <= today.day ? Color.black : Color.futureText)
+                                        .frame(width: 40, height: 40)
+                                        .background(logTimeColor[dayNum - firstDayofMonth - 1])
+                                }
                             }
                         } else {
                             Text("")

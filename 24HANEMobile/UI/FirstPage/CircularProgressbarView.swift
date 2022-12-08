@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct CircularProgressbarView: View {
+    @EnvironmentObject var apiHandler: APIHandler
     let progress: Double
     var body: some View {
         ZStack{
-            if progress >= 1{
+            if progress >= 1 {
                 Text("100%")
                     .font(.system(size: 30, weight: .medium, design: .default))
-                    .foregroundColor(Color.progressbarText)
-            } else{
+                    .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
+            } else {
                 Text("\(Int(progress * 100))%")
                     .font(.system(size: 30, weight: .medium, design: .default))
-                    .foregroundColor(Color.progressbarText)
+                    .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
             }
             Circle()
                 .stroke(
@@ -29,7 +30,7 @@ struct CircularProgressbarView: View {
                 .trim(from:0, to: (progress))
             //user data 맞춰서 to 변경
                 .stroke(
-                    Color.progressbarblue,
+                    (apiHandler.userInfo.inoutState == "IN") ? Color.progressbarblue : Color.gray,
                     style: StrokeStyle(
                         lineWidth: 13,
                         lineCap: .round

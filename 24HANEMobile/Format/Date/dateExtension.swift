@@ -53,8 +53,8 @@ extension Date {
     
     public var monthName: String{
         let nameFormatter = DateFormatter()
-//        nameFormatter.dateStyle = .medium
-        nameFormatter.dateFormat = "MM"
+  //      nameFormatter.dateStyle = .medium
+        nameFormatter.dateFormat = "MMM"
         return nameFormatter.string(from: self)
     }
     

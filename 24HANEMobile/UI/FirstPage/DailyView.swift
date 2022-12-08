@@ -9,6 +9,7 @@ import SwiftUI
 import Foundation
 
 struct DailyView: View {
+    @EnvironmentObject var apiHandler: APIHandler
     var options: Array<Double> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
  
 //
@@ -25,16 +26,16 @@ struct DailyView: View {
                 VStack{
                     Text("누적시간")
                         .font(.system(size: 17, weight: .regular, design: .rounded))
-                        .foregroundColor(Color.textfordata)
+                        .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
                     Text("\(parseAccumulationTime(type: "day", date: currentTime))")
                         .font(.system(size: 38, weight: .medium, design: .default))
-                        .foregroundColor(Color.textfordata)
+                        .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
                         .padding(-2)
                     Text("")
                         .padding(-5)
                     Text("목표시간")
                         .font(.system(size: 17, weight: .regular, design: .rounded))
-                        .foregroundColor(Color.textfordata)
+                        .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
                     Menu{
                         Picker(selection: $selectionOption) {
                             ForEach(1 ..< options.count + 1) { times in
@@ -44,7 +45,7 @@ struct DailyView: View {
                     } label: {
                         Text("\(Int(options[selectionOption])) : 00")
                             .font(.system(size: 35, weight: .medium, design: .default))
-                            .foregroundColor(Color.textfordata)
+                            .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
                             .onAppear(){
                                 UserDefaults.standard.setValue(selectionOption, forKey: "DailySelectionOption")
                             }

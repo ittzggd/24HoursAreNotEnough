@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailView: View {
-    @EnvironmentObject var apiTmp: APIHanderTmp
+    @EnvironmentObject var apiTmp: APIHandler
     
     var groupedLogs: [String: inOutStamp] {
         get {

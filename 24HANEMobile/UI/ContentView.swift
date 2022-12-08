@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var apihandler: APIHandler
-    @EnvironmentObject var apiTmp: APIHanderTmp
+    @EnvironmentObject var apiHandler: APIHandler
     @State var isSignedIn = false
     @State private var inOutState = false
     @State private var date = Date()
@@ -37,24 +36,28 @@ struct ContentView: View {
                     } else if loadData == true {
                         HeaderView()
                             .refreshable {
-                                guard let Token = UserDefaults.standard.string(forKey: "Token") else {
-                                    print("토큰 읎다")
-                                    return
-                                }
                                 do{
-                                    try await self.apiTmp.getAccumulationTime(token: Token)
+                                    try await apiHandler.getMainInfo()
                                 } catch {
+                                    isSigned.page = "beforeSignIn"
                                     print("error")
                                 }
                                 do{
-                                    try await self.apiTmp.getMonthLogs(token: Token, year: 2022, month: 12)
+                                    try await apiHandler.getAccumulationTime()
                                 } catch {
+                                    isSigned.page = "beforeSignIn"
+                                    print("error")
+                                }
+                                do{
+                                    try await apiHandler.getMonthLogs(year: 2022, month: 12)
+                                } catch {
+                                    isSigned.page = "beforeSignIn"
                                     print("error")
                                 }
                             }
                         TabView{
                             MainView(inoutState: $inOutState)
-                                .environmentObject(apiTmp)
+                                .environmentObject(apiHandler)
                             DetailView(selectedDay: date.day)
                         }
                         .tabViewStyle(.page)
@@ -62,24 +65,20 @@ struct ContentView: View {
                     }
                 }
                 .task {
-                    guard let Token = UserDefaults.standard.string(forKey: "Token") else {
-                        print("토큰 읎다")
-                        return
-                    }
                     do{
-                        try await apiTmp.getMainInfo(token: Token)
+                        try await apiHandler.getMainInfo()
                     } catch {
                         isSigned.page = "beforeSignIn"
                         print("error")
                     }
                     do{
-                        try await apiTmp.getAccumulationTime(token: Token)
+                        try await apiHandler.getAccumulationTime()
                     } catch {
                         isSigned.page = "beforeSignIn"
                         print("error")
                     }
                     do{
-                        try await apiTmp.getMonthLogs(token: Token, year: 2022, month: 12)
+                        try await apiHandler.getMonthLogs(year: 2022, month: 12)
                     } catch {
                         isSigned.page = "beforeSignIn"
                         print("error")
@@ -89,7 +88,7 @@ struct ContentView: View {
             }
         }
         .onAppear{
-            isSignedIn = isSignIn(apihandler: apihandler) ? true : false
+            isSignedIn = isSignIn(apihandler: apiHandler) ? true : false
         }
         .alert(isPresented: $showingAlert){
             Alert(title: Text("Error"), message: Text("Network not connected"),
