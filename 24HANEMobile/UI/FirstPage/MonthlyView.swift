@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MonthlyView: View {
     var options: Array<Double> = [20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240]
-    @State private var selectionOption = 1
+    @AppStorage("MonthlySelectionOption") private var selectionOption =  UserDefaults.standard.integer(forKey: "MonthlySelectionOption")
     var currentTime:Int64
     var body: some View {
         ZStack{
@@ -41,6 +41,9 @@ struct MonthlyView: View {
                         Text("  \(Int(options[selectionOption])) : 00")
                             .font(.system(size: 35, weight: .medium, design: .default))
                             .foregroundColor(Color.textfordata)
+                            .onAppear(){
+                                UserDefaults.standard.setValue(selectionOption, forKey: "MonthlySelectionOption")
+                            }
                     }
                 }
                 .padding(30)
