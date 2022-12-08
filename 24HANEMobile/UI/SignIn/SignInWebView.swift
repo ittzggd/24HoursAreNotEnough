@@ -54,6 +54,7 @@ struct SignInWebView: UIViewRepresentable {
                             UserDefaults.standard.setValue(String(cookie.value), forKey: "Token")
                             self.isSigned.page = "afterSignIn"
                             self.showWebView = true
+                            break
 //                             ret = saveToken(token: String(cookie.value))
 //                            if ret == true {
 //                                print("hi from webview token saved")
