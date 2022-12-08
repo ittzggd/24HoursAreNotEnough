@@ -14,11 +14,14 @@ class APIHanderTmp: ObservableObject{
     @Published var monthLogs: perMonth = perMonth.sample
     @Published var accTime: accumationTimes = accumationTimes.sample
     
-    
-    func getAccumulationTime(token: String) async throws{
-        guard let url = URL(string: "https://api.24hoursarenotenough.42seoul.kr/v1/tag-log/accumulationTimes") else {
+    private func getJsonAsync<T>(_ url: String, type: T.Type) async throws -> T where T : Decodable {
+        guard let url = URL(string: url) else {
             fatalError("MissingURL")
         }
+        guard let token = UserDefaults.standard.string(forKey: "Token") else {
+            fatalError("UnValid Token")
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = [
@@ -28,48 +31,28 @@ class APIHanderTmp: ObservableObject{
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
             fatalError("Access Denied")
         }
-        let decodedAccumulationTimes =  try JSONDecoder().decode(accumationTimes.self, from: data)
-        accTime = decodedAccumulationTimes
+        let decodedData =  try JSONDecoder().decode(type.self, from: data)
+        return decodedData
     }
     
+    @MainActor
+    func getAccumulationTime(token: String) async throws {
+        accTime = try await getJsonAsync("https://api.24hoursarenotenough.42seoul.kr/v1/tag-log/accumulationTimes", type: accumationTimes.self)
+    }
+    
+    @MainActor
     func getMainInfo(token: String) async throws{
-        guard let url = URL(string: "https://api.24hoursarenotenough.42seoul.kr/v1/tag-log/maininfo") else {
-            fatalError("MissingURL")
-        }
-        print("Token from getMainInfo: \(token)")
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = [
-            "Authorization" : "Bearer \(token)"
-        ]
-        print("URL: \(url)")
-        let (data, response) = try await URLSession.shared.data(for: request)
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            fatalError("Access Denied")
-        }
-        let decodedMainInfo =  try JSONDecoder().decode(mainInfo.self, from: data)
-        userInfo = decodedMainInfo
+        userInfo = try await getJsonAsync("https://api.24hoursarenotenough.42seoul.kr/v1/tag-log/maininfo", type: mainInfo.self)
     }
     
+    @MainActor
     func getMonthLogs(token: String, year: Int, month: Int) async throws {
         var components = URLComponents(string: "https://api.24hoursarenotenough.42seoul.kr/v1/tag-log/permonth")!
         let year = URLQueryItem(name: "year", value: "\(year)")
         let month = URLQueryItem(name: "month", value: "\(month)")
         components.queryItems = [year, month]
-        guard let  url = components.url else {
-            fatalError("MissingURL")
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = [
-            "Authorization" : "Bearer \(String(describing: token) )"
-        ]
+        print(components.url!)
         
-        let (data, response) = try await URLSession.shared.data(for: request)
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-            fatalError("Access Denied")
-        }
-        let decodedPerMonth =  try JSONDecoder().decode(perMonth.self, from: data)
-        monthLogs = decodedPerMonth
+        monthLogs = try await getJsonAsync(components.url!.absoluteString, type: perMonth.self)
     }
 }
