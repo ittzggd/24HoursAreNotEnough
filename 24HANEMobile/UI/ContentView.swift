@@ -11,7 +11,6 @@ struct ContentView: View {
     @EnvironmentObject var apihandler: APIHandler
     @EnvironmentObject var apiTmp: APIHanderTmp
     @State var isSignedIn = false
-    @State private var load = false
     @State private var inOutState = false
     @State private var date = Date()
     @ObservedObject var isSigned: IsSignedIn
@@ -19,9 +18,6 @@ struct ContentView: View {
     @State private var showingAlert = !NetworkManager().isConnected
     
     @State private var loadData = false
-    var accTime: accumationTimes{apiTmp.accTime}
-    var info: mainInfo{apiTmp.userInfo}
-    var monthLogs: [inOutStamp]{apiTmp.monthLogs.inOutLogs}
     
     var body: some View {
         VStack {
@@ -40,9 +36,26 @@ struct ContentView: View {
                         isLoading()
                     } else if loadData == true {
                         HeaderView()
+                            .refreshable {
+                                guard let Token = UserDefaults.standard.string(forKey: "Token") else {
+                                    print("토큰 읎다")
+                                    return
+                                }
+                                do{
+                                    try await self.apiTmp.getAccumulationTime(token: Token)
+                                } catch {
+                                    print("error")
+                                }
+                                do{
+                                    try await self.apiTmp.getMonthLogs(token: Token, year: 2022, month: 12)
+                                } catch {
+                                    print("error")
+                                }
+                            }
                         TabView{
-                            MainView(accTime: accTime, inoutState: $inOutState)
-                            DetailView(inOutLogs: monthLogs, selectedDay: date.day)
+                            MainView(inoutState: $inOutState)
+                                .environmentObject(apiTmp)
+                            DetailView(selectedDay: date.day)
                         }
                         .tabViewStyle(.page)
                         .indexViewStyle(.page(backgroundDisplayMode: .always))
@@ -56,45 +69,22 @@ struct ContentView: View {
                     do{
                         try await apiTmp.getMainInfo(token: Token)
                     } catch {
+                        isSigned.page = "beforeSignIn"
                         print("error")
                     }
                     do{
                         try await apiTmp.getAccumulationTime(token: Token)
                     } catch {
+                        isSigned.page = "beforeSignIn"
                         print("error")
                     }
                     do{
                         try await apiTmp.getMonthLogs(token: Token, year: 2022, month: 12)
                     } catch {
+                        isSigned.page = "beforeSignIn"
                         print("error")
                     }
                     loadData = true
-                }
-                .onAppear{
-                    print("hi from loading")
-                    guard let Token = UserDefaults.standard.string(forKey: "Token") else {
-                        print("토큰 읎다")
-                        return
-                    }
-
-//                    apihandler.getAccumulationTimes(token: Token){(isSuccess, accumationTimes) in
-//                      if isSuccess{
-//                          loadData = true
-//                      }
-//
-//                    }
-//                    apihandler.getUserInfo(token: Token){(isSuccess, mainInfo) in
-//                      if isSuccess{
-//                        if info.inoutState == "in"{
-//                          inOutState = true
-//                        }
-//                      }
-//                    }
-//                    apihandler.getMonthLogs(token: Token, year: date.yearName, month: String(date.month)){(isSuccess, monthLogs) in
-//                      if isSuccess{
-//                        print("success")
-//                      }
-//                    }
                 }
             }
         }
@@ -110,8 +100,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(isSignedIn: true, isSigned: IsSignedIn())
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView(isSignedIn: true, isSigned: IsSignedIn())
+//    }
+//}
