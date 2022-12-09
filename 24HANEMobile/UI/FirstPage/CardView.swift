@@ -1,18 +1,22 @@
 //
-//  MonthlyView.swift
+//  CardView.swift
 //  24HANEMobile
 //
-//  Created by Katherine JANG on 11/29/22.
+//  Created by Katherine JANG on 12/9/22.
 //
 
 import SwiftUI
 
-struct MonthlyView: View {
-    var options: Array<Double> = [20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240]
-    @AppStorage("MonthlySelectionOption") private var selectionOption =  UserDefaults.standard.integer(forKey: "MonthlySelectionOption")
-    
+struct CardView: View {
     @EnvironmentObject var apiHandler: APIHandler
-    var currentTime:Int64
+    @AppStorage("DailySelectionOption") private var dailySelectionOption =  UserDefaults.standard.integer(forKey: "DailySelectionOption")
+    @AppStorage("MonthlySelectionOption") private var monthlySelectionOption =  UserDefaults.standard.integer(forKey: "MonthlySelectionOption")
+
+    
+    var options: Array<Double>
+    var type: String
+    var currentTime: Int64
+    
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 20)
@@ -24,8 +28,8 @@ struct MonthlyView: View {
                     Text("누적시간")
                         .font(.system(size: 17, weight: .regular, design: .rounded))
                         .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
-                    Text(" \(parseAccumulationTime(type: "month", date: currentTime))")
-                        .font(.system(size: 35, weight: .medium, design: .default))
+                    Text("\(parseAccumulationTime(type: type, date: currentTime))")
+                        .font(.system(size: 38, weight: .medium, design: .default))
                         .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
                         .padding(-2)
                     Text("")
@@ -34,25 +38,27 @@ struct MonthlyView: View {
                         .font(.system(size: 17, weight: .regular, design: .rounded))
                         .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
                     Menu{
-                        Picker(selection: $selectionOption){
-                            ForEach(1 ..< options.count + 1){ times in
-                                Text("\(Int(options[times - 1]))시간")
+                        Picker(selection: (type == "day") ? $dailySelectionOption : $monthlySelectionOption) {
+                            ForEach(1 ..< options.count + 1) { times in
+                                Text("\(Int(options[times - 1])) 시간")
                             }
                         } label: {}
                     } label: {
-                        Text("  \(Int(options[selectionOption])) : 00")
+                        Text("\(Int(options[(type == "day") ? dailySelectionOption : monthlySelectionOption])) : 00")
                             .font(.system(size: 35, weight: .medium, design: .default))
                             .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
                             .onAppear(){
-                                UserDefaults.standard.setValue(selectionOption, forKey: "MonthlySelectionOption")
+                                 (type == "day") ?
+                                    UserDefaults.standard.setValue(dailySelectionOption, forKey: "DailySelectionOption") :
+                                        UserDefaults.standard.setValue(monthlySelectionOption, forKey: "MonthlySelectionOption")
                             }
                     }
                 }
-                .padding(30)
+                .padding()
                 Divider()
                     .frame(height: 50)
                     .background(Color.black)
-                CircularProgressbarView(progress: (Double(currentTime)/3600) / options[selectionOption])
+                CircularProgressbarView(progress: (Double(currentTime)/3600) / options[(type == "day") ? dailySelectionOption : monthlySelectionOption])
                     .frame(width: 140, height: 140)
                     .padding()
             }
@@ -60,8 +66,8 @@ struct MonthlyView: View {
     }
 }
 
-struct MonthlyView_Previews: PreviewProvider {
+struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        MonthlyView(currentTime: 10)
+        CardView(options: [20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240], type: "month", currentTime: APIHandler().accTime.monthAccumationTime)
     }
 }

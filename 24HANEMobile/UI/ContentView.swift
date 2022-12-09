@@ -1,4 +1,4 @@
-//
+ //
 //  ContentView.swift
 //  24HANEMobile
 //
@@ -34,8 +34,8 @@ struct ContentView: View {
                 .gesture(drag)
             }
         }
-        .onAppear(){
-            isSignedIn.isSignIn = isSignIn(apihandler: apiHandler) ? true : false
+        .task{
+            self.isSignedIn.isSignIn = isSignIn(apihandler: apiHandler) ? true : false
         }
     }
 }

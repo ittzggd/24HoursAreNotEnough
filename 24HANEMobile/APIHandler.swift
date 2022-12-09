@@ -22,18 +22,22 @@ class APIHandler: ObservableObject{
             "Authorization" : "Bearer \(token)"
         ]
         var isSignIn = false
-        
-        URLSession.shared.dataTask(with: request) {(data, response, error) in
-            guard let _ = data, error == nil else{
-                print("error occured [isLogin-task] ")
+        let task = URLSession.shared.dataTask(with: request){(data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error occured [getUserInfo-task]")
                 return
             }
-            if let response = response as? HTTPURLResponse, response.statusCode == 204 {
+            guard let response = response as? HTTPURLResponse else {
+                print("error [getUserInfo - HTTPURLResponse]")
+                return
+            }
+            if response.statusCode == 204 {
                     isSignIn = true
             } else {
-                isSignIn = false
+               isSignIn = false
             }
-        }
+            
+        }.resume()
         return isSignIn
     }
     
