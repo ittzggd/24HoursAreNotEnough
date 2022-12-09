@@ -12,11 +12,10 @@ import Foundation
 struct SignInWebView: UIViewRepresentable {
     
     var url: URL
-    @Binding var showWebView: Bool
     @ObservedObject var isSigned: IsSignedIn
     
     func makeCoordinator() -> WebViewCoordinator {
-        WebViewCoordinator(self, showWebView: showWebView, isSigned: isSigned)
+        WebViewCoordinator(self, isSigned: isSigned)
     }
     
     func makeUIView(context: Context) -> WKWebView{
@@ -32,43 +31,25 @@ struct SignInWebView: UIViewRepresentable {
     
     class WebViewCoordinator: NSObject, WKNavigationDelegate {
         var parent: SignInWebView
-        var showWebView: Bool
         var isSigned: IsSignedIn
         
-        init(_ parent: SignInWebView, showWebView: Bool, isSigned: IsSignedIn) {
+        init(_ parent: SignInWebView, isSigned: IsSignedIn) {
             self.parent = parent
-            self.showWebView = showWebView
             self.isSigned = isSigned
             super.init()
         }
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void){
-            print("hi!")
             let urlToMatch = "/user/login/callback/42"
-            var ret = false
             if let urlStr = navigationAction.request.url?.path, urlStr == urlToMatch{
                 WKWebsiteDataStore.default().httpCookieStore.getAllCookies{ (cookies) in
                     for cookie in cookies{
-                        print(cookie)
                         if cookie.name == "accessToken"{
-                            print("access Token exist")
                             UserDefaults.standard.setValue(String(cookie.value), forKey: "Token")
-                            self.isSigned.page = "afterSignIn"
-                            self.showWebView = true
+                            self.isSigned.isSignIn = true
                             break
-//                             ret = saveToken(token: String(cookie.value))
-//                            if ret == true {
-//                                print("hi from webview token saved")
-//                                self.isSigned.page = "afterSignIn"
-//                                self.showWebView = true
-//                            }
                         }
                     }
                 }
-                if ret == true {
-                    print("hi guys")
-                    isSigned.page = "afterSignIn"
-                }
-                print("web vew login access")
                 decisionHandler(.allow)
             } else {
                 decisionHandler(.allow)
@@ -79,6 +60,6 @@ struct SignInWebView: UIViewRepresentable {
 
 struct SignInWebView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInWebView(url: URL(string:"https://api.24hoursarenotenough.42seoul.kr/user/login/42?redirect=42")!, showWebView: .constant(true), isSigned: IsSignedIn())
+        SignInWebView(url: URL(string:"https://api.24hoursarenotenough.42seoul.kr/user/login/42?redirect=42")!, isSigned: IsSignedIn())
     }
 }

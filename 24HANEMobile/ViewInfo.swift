@@ -8,6 +8,6 @@
 import Foundation
 
 class IsSignedIn: ObservableObject {
-    @Published var page = "beforeSignIn"
+    @Published var isSignIn = false
     @Published var Token = "kkk"
 }

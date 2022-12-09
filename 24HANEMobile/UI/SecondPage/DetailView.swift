@@ -8,32 +8,34 @@
 import SwiftUI
 
 struct DetailView: View {
+    
     @EnvironmentObject var apiTmp: APIHandler
+    @State var selectedDay = Date().day
+    
+    var today = Date()
     
     var groupedLogs: [String: inOutStamp] {
         get {
             return sumAccumulationTime(inoutStamp: apiTmp.monthLogs.inOutLogs)
         }
     }
-    var date = Date()
-    @State var selectedDay = Date().day
     var filteredInOutStamp: Array<inOutStamp> {
         get{
-            return filteringInOutStaemp(inOutStamp: apiTmp.monthLogs.inOutLogs, year: date.year, month: date.month, day: selectedDay)
+            return filteringInOutStaemp(inOutStamp: apiTmp.monthLogs.inOutLogs, year: today.year, month: today.month, day: selectedDay)
         }
     }
     
     var body: some View {
         VStack(){
-            CalendarView(logTimeColor: calculateLogColor(timeLogs: groupedLogs, year: date.year, month: date.month)){ day in
+            CalendarView(logTimeColor: calculateLogColor(timeLogs: groupedLogs, year: today.year, month: today.month)){ day in
                 selectedDay = day
             }
             
             PickedDataView(
                 dailyHours: getDailyAccumulationTime(
                     monthLogs: groupedLogs,
-                    year: date.year,
-                    month: date.month,
+                    year: today.year,
+                    month: today.month,
                     day: selectedDay
                 ),
                 monthlyHours: getMonthlyAccumulationTime(
