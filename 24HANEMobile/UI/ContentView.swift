@@ -26,8 +26,9 @@ struct ContentView: View {
                     MainView(isSigned: isSignedIn, showMenu: $showMenu)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                     if self.showMenu {
-                        SideMenuView()
-                            .frame(width: geometry.size.width/2)
+                        SideMenuView() {
+                            self.showMenu.toggle()
+                        }
                             .transition(.move(edge: .trailing))
                     }
                 }
