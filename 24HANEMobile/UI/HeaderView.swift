@@ -55,7 +55,6 @@ struct HeaderView: View {
                 }
                 Divider()
             }
-            Spacer()
         }
     }
 }

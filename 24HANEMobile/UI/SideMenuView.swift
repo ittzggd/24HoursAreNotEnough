@@ -14,25 +14,27 @@ struct SideMenuView: View {
                 Image(systemName: "person")
                     .foregroundColor(.gray)
                     .imageScale(.large)
-                Text("Profile")
+                Text("Intra ID")
                     .foregroundColor(.gray)
                     .font(.headline)
             }
             .padding(.top, 100)
             HStack {
-                Image(systemName: "envelope")
+                Image("Github")
+                    .resizable()
+                    .frame(width: 30.0, height: 30.0)
                     .foregroundColor(.gray)
                     .imageScale(.large)
-                Text("Messages")
+                Text("Dev github")
                     .foregroundColor(.gray)
                     .font(.headline)
             }
             .padding(.top, 30)
             HStack {
-                Image(systemName: "gear")
+                Image(systemName: "rosette")
                     .foregroundColor(.gray)
                     .imageScale(.large)
-                Text("Settings")
+                Text("Licnese")
                     .foregroundColor(.gray)
                     .font(.headline)
             }

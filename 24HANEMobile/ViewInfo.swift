@@ -9,5 +9,4 @@ import Foundation
 
 class IsSignedIn: ObservableObject {
     @Published var isSignIn = false
-    @Published var Token = "kkk"
 }
