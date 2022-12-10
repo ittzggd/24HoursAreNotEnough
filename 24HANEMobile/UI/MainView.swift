@@ -82,12 +82,6 @@ struct MainView: View {
                 }
             }
         }
-        .alert(isPresented: $showingAlert){
-            Alert(title: Text("Error"), message: Text("Network not connected"),
-            dismissButton: .default(Text("Retry"), action: {
-                network = true
-            }))
-        }
     }
 }
 

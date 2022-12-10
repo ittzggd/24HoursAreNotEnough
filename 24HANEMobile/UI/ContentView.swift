@@ -11,6 +11,8 @@ struct ContentView: View {
     @State var showMenu = false
     @EnvironmentObject var apiHandler: APIHandler
     @ObservedObject var isSignedIn: IsSignedIn
+    @State var network = false
+    @State private var showingAlert = !NetworkManager().isConnected
     
     var body: some View {
         let drag = DragGesture()
@@ -26,7 +28,7 @@ struct ContentView: View {
                     MainView(isSigned: isSignedIn, showMenu: $showMenu)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                     if self.showMenu {
-                        SideMenuView(intraID: apiHandler.userInfo.login) {
+                        SideMenuView(isSigned: isSignedIn, intraID: apiHandler.userInfo.login) {
                             self.showMenu.toggle()
                         }
                             .transition(.move(edge: .trailing))
@@ -37,6 +39,12 @@ struct ContentView: View {
         }
         .task{
             self.isSignedIn.isSignIn = isSignIn(apihandler: apiHandler) ? true : false
+        }
+        .alert(isPresented: $showingAlert){
+            Alert(title: Text("Error"), message: Text("Network not connected"),
+            dismissButton: .default(Text("Retry"), action: {
+                network = true
+            }))
         }
     }
 }

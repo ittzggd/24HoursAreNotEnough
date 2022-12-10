@@ -52,6 +52,9 @@ struct CardView: View {
                                     UserDefaults.standard.setValue(dailySelectionOption, forKey: "DailySelectionOption") :
                                         UserDefaults.standard.setValue(monthlySelectionOption, forKey: "MonthlySelectionOption")
                             }
+                        Image(systemName: "chevron.up.chevron.down")
+                            .frame(width: 10, height: 10)
+                            .foregroundColor(.gray)
                     }
                 }
                 .padding()

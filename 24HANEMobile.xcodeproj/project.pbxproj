@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0E38F522294052980027FFED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E38F521294052980027FFED /* NetworkManager.swift */; };
 		0E53CE3B2942DC0C0098C471 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E53CE3A2942DC0C0098C471 /* CardView.swift */; };
+		0E53CE3D29448F9E0098C471 /* goalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E53CE3C29448F9E0098C471 /* goalView.swift */; };
+		0E53CE3F294499EB0098C471 /* URLButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E53CE3E294499EB0098C471 /* URLButtonView.swift */; };
 		0EBE93B12941AB2A001EB518 /* isFirstTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE93B02941AB2A001EB518 /* isFirstTime.swift */; };
 		0EBE93B32941B8EA001EB518 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE93B22941B8EA001EB518 /* APIHandler.swift */; };
 		0EBE93B92942199E001EB518 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE93B82942199E001EB518 /* MainView.swift */; };
@@ -34,8 +36,6 @@
 		0EEE04D62935FF3600BAF824 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04D52935FF3600BAF824 /* ColorExtension.swift */; };
 		0EEE04DA2935FFBC00BAF824 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04D92935FFBC00BAF824 /* SummaryView.swift */; };
 		0EEE04DC2935FFE400BAF824 /* CircularProgressbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04DB2935FFE400BAF824 /* CircularProgressbarView.swift */; };
-		0EEE04DE293600AE00BAF824 /* DailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04DD293600AE00BAF824 /* DailyView.swift */; };
-		0EEE04E02936012700BAF824 /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04DF2936012700BAF824 /* MonthlyView.swift */; };
 		0EEE04E22936016400BAF824 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04E12936016400BAF824 /* HeaderView.swift */; };
 		0EEE04E52936049600BAF824 /* AccumulationTimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04E42936049600BAF824 /* AccumulationTimeFormat.swift */; };
 		0EEE04E92936184D00BAF824 /* ColorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04E82936184D00BAF824 /* ColorState.swift */; };
@@ -43,9 +43,26 @@
 		0EEE04EE29385B1B00BAF824 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE04ED29385B1B00BAF824 /* CalendarHelper.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0E53CE5A2944A0BB0098C471 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0E38F521294052980027FFED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0E53CE3A2942DC0C0098C471 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		0E53CE3C29448F9E0098C471 /* goalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = goalView.swift; sourceTree = "<group>"; };
+		0E53CE3E294499EB0098C471 /* URLButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLButtonView.swift; sourceTree = "<group>"; };
+		0E53CE472944A0B80098C471 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		0E53CE492944A0B80098C471 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		0EBE93B02941AB2A001EB518 /* isFirstTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isFirstTime.swift; sourceTree = "<group>"; };
 		0EBE93B22941B8EA001EB518 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		0EBE93B82942199E001EB518 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -73,8 +90,6 @@
 		0EEE04D52935FF3600BAF824 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		0EEE04D92935FFBC00BAF824 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		0EEE04DB2935FFE400BAF824 /* CircularProgressbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressbarView.swift; sourceTree = "<group>"; };
-		0EEE04DD293600AE00BAF824 /* DailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyView.swift; sourceTree = "<group>"; };
-		0EEE04DF2936012700BAF824 /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
 		0EEE04E12936016400BAF824 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		0EEE04E42936049600BAF824 /* AccumulationTimeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccumulationTimeFormat.swift; sourceTree = "<group>"; };
 		0EEE04E82936184D00BAF824 /* ColorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorState.swift; sourceTree = "<group>"; };
@@ -93,6 +108,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E53CE4029449F7B0098C471 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				0EBE93BA29421ED7001EB518 /* SideMenuView.swift */,
+				0E53CE3E294499EB0098C471 /* URLButtonView.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		0E53CE462944A0B80098C471 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E53CE472944A0B80098C471 /* WidgetKit.framework */,
+				0E53CE492944A0B80098C471 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0EC3426429385E3200935E97 /* Date */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				0EEE04BE2935FA4A00BAF824 /* 24HANEMobile */,
+				0E53CE462944A0B80098C471 /* Frameworks */,
 				0EEE04BD2935FA4A00BAF824 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -172,11 +206,11 @@
 		0EEE04D32935FF1300BAF824 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0E53CE4029449F7B0098C471 /* SideMenu */,
 				0EEE04C12935FA4A00BAF824 /* ContentView.swift */,
 				0EE69ECD293C7DB900189663 /* isLoading.swift */,
 				0EEE04E12936016400BAF824 /* HeaderView.swift */,
 				0EBE93B82942199E001EB518 /* MainView.swift */,
-				0EBE93BA29421ED7001EB518 /* SideMenuView.swift */,
 				0EC3427B293A016B00935E97 /* SignIn */,
 				0EEE04D82935FF8000BAF824 /* SecondPage */,
 				0EEE04D72935FF7800BAF824 /* FirstPage */,
@@ -199,9 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				0EEE04D92935FFBC00BAF824 /* SummaryView.swift */,
-				0EEE04DD293600AE00BAF824 /* DailyView.swift */,
 				0E53CE3A2942DC0C0098C471 /* CardView.swift */,
-				0EEE04DF2936012700BAF824 /* MonthlyView.swift */,
+				0E53CE3C29448F9E0098C471 /* goalView.swift */,
 				0EEE04DB2935FFE400BAF824 /* CircularProgressbarView.swift */,
 			);
 			path = FirstPage;
@@ -250,6 +283,7 @@
 				0EEE04B82935FA4A00BAF824 /* Sources */,
 				0EEE04B92935FA4A00BAF824 /* Frameworks */,
 				0EEE04BA2935FA4A00BAF824 /* Resources */,
+				0E53CE5A2944A0BB0098C471 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -313,7 +347,6 @@
 				0EC3427429387F1800935E97 /* CalculateAccumulationTime.swift in Sources */,
 				0EEE04E22936016400BAF824 /* HeaderView.swift in Sources */,
 				0EE69ECC293C6DEF00189663 /* UserData.swift in Sources */,
-				0EEE04DE293600AE00BAF824 /* DailyView.swift in Sources */,
 				0EC3427D293A018D00935E97 /* SignInWebView.swift in Sources */,
 				0EC3426C29386F2700935E97 /* TagLogView.swift in Sources */,
 				0EC3427029386F4A00935E97 /* TagLogHeaderView.swift in Sources */,
@@ -322,8 +355,8 @@
 				0EBE93B92942199E001EB518 /* MainView.swift in Sources */,
 				0EEE04E92936184D00BAF824 /* ColorState.swift in Sources */,
 				0EEE04C22935FA4A00BAF824 /* ContentView.swift in Sources */,
+				0E53CE3F294499EB0098C471 /* URLButtonView.swift in Sources */,
 				0EEE04DA2935FFBC00BAF824 /* SummaryView.swift in Sources */,
-				0EEE04E02936012700BAF824 /* MonthlyView.swift in Sources */,
 				0EE69ED1293C91E400189663 /* ViewInfo.swift in Sources */,
 				0EBE93BB29421ED7001EB518 /* SideMenuView.swift in Sources */,
 				0EEE04DC2935FFE400BAF824 /* CircularProgressbarView.swift in Sources */,
@@ -337,6 +370,7 @@
 				0EEE04E52936049600BAF824 /* AccumulationTimeFormat.swift in Sources */,
 				0EC342782939E43B00935E97 /* tagLogFormat.swift in Sources */,
 				0EC3426E29386F3E00935E97 /* TagLogBodyView.swift in Sources */,
+				0E53CE3D29448F9E0098C471 /* goalView.swift in Sources */,
 				0EEE04CF2935FE7E00BAF824 /* APIJsonStruct.swift in Sources */,
 				0EEE04D62935FF3600BAF824 /* ColorExtension.swift in Sources */,
 				0EBE93B32941B8EA001EB518 /* APIHandler.swift in Sources */,
@@ -470,6 +504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"24HANEMobile/Preview Content\"";
+				DEVELOPMENT_TEAM = G8PN2D3JZ7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "-4HANEMobile-Info.plist";
