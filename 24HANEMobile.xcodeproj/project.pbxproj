@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0E38F522294052980027FFED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E38F521294052980027FFED /* NetworkManager.swift */; };
-		0E53CE3929426D6B0098C471 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E53CE3829426D6B0098C471 /* Launch Screen.storyboard */; };
 		0E53CE3B2942DC0C0098C471 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E53CE3A2942DC0C0098C471 /* CardView.swift */; };
 		0EBE93B12941AB2A001EB518 /* isFirstTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE93B02941AB2A001EB518 /* isFirstTime.swift */; };
 		0EBE93B32941B8EA001EB518 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE93B22941B8EA001EB518 /* APIHandler.swift */; };
@@ -46,7 +45,6 @@
 
 /* Begin PBXFileReference section */
 		0E38F521294052980027FFED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		0E53CE3829426D6B0098C471 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0E53CE3A2942DC0C0098C471 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0EBE93B02941AB2A001EB518 /* isFirstTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isFirstTime.swift; sourceTree = "<group>"; };
 		0EBE93B22941B8EA001EB518 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
@@ -176,7 +174,6 @@
 			children = (
 				0EEE04C12935FA4A00BAF824 /* ContentView.swift */,
 				0EE69ECD293C7DB900189663 /* isLoading.swift */,
-				0E53CE3829426D6B0098C471 /* Launch Screen.storyboard */,
 				0EEE04E12936016400BAF824 /* HeaderView.swift */,
 				0EBE93B82942199E001EB518 /* MainView.swift */,
 				0EBE93BA29421ED7001EB518 /* SideMenuView.swift */,
@@ -301,7 +298,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E53CE3929426D6B0098C471 /* Launch Screen.storyboard in Resources */,
 				0EEE04C72935FA4D00BAF824 /* Preview Assets.xcassets in Resources */,
 				0EEE04C42935FA4D00BAF824 /* Assets.xcassets in Resources */,
 			);
@@ -489,9 +485,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.hejang.-4HANEMobile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -518,9 +517,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.hejang.-4HANEMobile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

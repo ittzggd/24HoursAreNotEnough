@@ -26,7 +26,7 @@ struct ContentView: View {
                     MainView(isSigned: isSignedIn, showMenu: $showMenu)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                     if self.showMenu {
-                        SideMenuView() {
+                        SideMenuView(intraID: apiHandler.userInfo.login) {
                             self.showMenu.toggle()
                         }
                             .transition(.move(edge: .trailing))
