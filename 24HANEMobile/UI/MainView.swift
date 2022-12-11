@@ -55,9 +55,13 @@ struct MainView: View {
                                 }
                             }
                         TabView{
-                            SummaryView()
-                                .environmentObject(apiHandler)
-                            DetailView()
+                            ScrollView{
+                                SummaryView()
+                                    .environmentObject(apiHandler)
+                            }
+                            ScrollView{
+                                DetailView()
+                            }
                         }
                         .tabViewStyle(.page)
                         .indexViewStyle(.page(backgroundDisplayMode: .always))
