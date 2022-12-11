@@ -33,6 +33,7 @@ struct CardView: View {
                         .font(.system(size: 38, weight: .medium, design: .default))
                         .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
                         .padding(-2)
+                        .fixedSize(horizontal: true, vertical: false)
                     Text("")
                         .padding(-5)
                     Text("목표시간")
@@ -48,6 +49,7 @@ struct CardView: View {
                         Text("\(Int(options[(type == "day") ? dailySelectionOption : monthlySelectionOption])) : 00")
                             .font(.system(size: 35, weight: .medium, design: .default))
                             .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
+                            .fixedSize(horizontal: true, vertical: false)
                             .onAppear(){
                                  (type == "day") ?
                                     UserDefaults.standard.setValue(dailySelectionOption, forKey: "DailySelectionOption") :
@@ -57,6 +59,7 @@ struct CardView: View {
                             .frame(width: 10, height: 10)
                             .foregroundColor(.gray)
                     }
+                    .padding(10)
                 }
                 .padding()
                 Divider()
