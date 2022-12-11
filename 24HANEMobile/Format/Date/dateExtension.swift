@@ -53,7 +53,6 @@ extension Date {
     
     public var monthName: String{
         let nameFormatter = DateFormatter()
-  //      nameFormatter.dateStyle = .medium
         nameFormatter.dateFormat = "MMM"
         return nameFormatter.string(from: self)
     }
@@ -61,6 +60,12 @@ extension Date {
     public var fullDate: String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY MM dd"
+        return dateFormatter.string(from: self)
+    }
+    
+    public var yearMonth: String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY.MM"
         return dateFormatter.string(from: self)
     }
 }

@@ -31,7 +31,7 @@ struct HeaderView: View {
                         } else {
                             Button(){
                                 isLoading = true
-                                async{
+                                Task{
                                     await refresh()
                                     isLoading = false
                                 }

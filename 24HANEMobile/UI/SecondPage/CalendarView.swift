@@ -9,13 +9,13 @@ import SwiftUI
 
 struct CalendarView: View {
     var cols: [GridItem] = [
-        GridItem(.flexible(), spacing: 4),
-        GridItem(.flexible(), spacing: 4),
-        GridItem(.flexible(), spacing: 4),
-        GridItem(.flexible(), spacing: 4),
-        GridItem(.flexible(), spacing: 4),
-        GridItem(.flexible(), spacing: 4),
-        GridItem(.flexible(), spacing: 4)
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)
     ]
     var logTimeColor: Array<Color>
     var today = Date()
@@ -38,27 +38,21 @@ struct CalendarView: View {
     var body: some View {
         ZStack{
             VStack(spacing: -40){
-                HStack{
-                    Text("\(today.monthName)")
-                    Text("\(today.yearName)")
-                }
-                .font(.system(size: 20, weight: .semibold, design: .default))
-                .foregroundColor(Color.calendarDate)
-                
-                LazyVGrid(columns: cols, spacing: 4){
+                LazyVGrid(columns: cols, spacing: 6){
                     ForEach((1...42), id: \.self){ dayNum in
                         if (dayNum > (0 + firstDayofMonth) && dayNum < (lastDayofMonth + firstDayofMonth + 1)) {
                             Button(action: {
                                 onClick(dayNum - firstDayofMonth)
                             }) {
                                 ZStack{
-                                    Rectangle()
-                                        .stroke(Color.checkOutGray)
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .shadow(color: .gray, radius: 2, x: 1, y: 2)
                                     Text("\(dayNum - firstDayofMonth)")
                                         .font(.system(size: 20, weight: .bold))
                                         .foregroundColor((dayNum - firstDayofMonth) <= today.day ? Color.black : Color.futureText)
                                         .frame(width: 40, height: 40)
                                         .background(logTimeColor[dayNum - firstDayofMonth - 1])
+                                        .cornerRadius(5)
                                 }
                             }
                             .disabled(((dayNum - firstDayofMonth) > today.day) ? true : false)
@@ -67,8 +61,7 @@ struct CalendarView: View {
                         }
                     }
                 }
-                .frame(width: 300, height: 300)
-                .padding()
+                .frame(width: 315)
             }
         }
     }

@@ -16,7 +16,7 @@ func getFirstDateOfMonth(year: Int, month: Int) ->Int {
     let startOfMonth = calendar.date(from: myDateComponents)
     let comp1 = calendar.dateComponents([.day, .weekday, .weekOfMonth], from: startOfMonth!)
     
-    let nextMonth = calendar.date(byAdding: .month, value:+1, to: startOfMonth!)
+   // let nextMonth = calendar.date(byAdding: .month, value:+1, to: startOfMonth!)
     
     if let weekday = comp1.weekday{
         return(weekday - 1)

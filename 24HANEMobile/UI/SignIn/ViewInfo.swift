@@ -8,9 +8,16 @@
 import Foundation
 import WebKit
 
+enum Status{
+    case webViewHidden
+    case webViewLoading
+    case webViewAppear
+    case signInLoading
+}
+
 class IsSignedIn: ObservableObject {
     @Published var isSignIn: Bool = false
-    @Published var isLoading: Bool = false
+    @Published var state = Status.webViewHidden
     
     func SignOut() {
         WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), completionHandler: {

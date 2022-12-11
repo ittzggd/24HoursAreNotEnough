@@ -26,11 +26,19 @@ struct DetailView: View {
     }
     
     var body: some View {
-        VStack(){
+        VStack(alignment: .center){
+            HStack{
+                Text("\(today.monthName)")
+                    .font(.system(size: 20, weight: .semibold, design: .default))
+                    .foregroundColor(Color.calendarDate)
+                Text("\(today.yearName)")
+                    .font(.system(size: 20, weight: .semibold, design: .default))
+                    .foregroundColor(Color.calendarDate)
+            }
+            .padding(.top, 10)
             CalendarView(logTimeColor: calculateLogColor(timeLogs: groupedLogs, year: today.year, month: today.month)){ day in
                 selectedDay = day
             }
-            
             PickedDataView(
                 dailyHours: getDailyAccumulationTime(
                     monthLogs: groupedLogs,
@@ -40,19 +48,17 @@ struct DetailView: View {
                 ),
                 monthlyHours: getMonthlyAccumulationTime(
                     monthLogs: groupedLogs
-                )
+                ),
+                selectedDate: selectedDay
             )
-            .position(x: 180, y: 10)
-            
             TagLogView(
                 tagLogData: parsedLog(
                     inoutLog: filteredInOutStamp
                 )
             )
-            .frame(width: 360, height: 250)
-            .position(x: 180, y: 0)
+            .frame(width: 360, height: 230)
+            Spacer()
         }
-        .padding()
     }
 }
 

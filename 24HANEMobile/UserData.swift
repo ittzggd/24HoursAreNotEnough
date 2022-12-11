@@ -9,8 +9,7 @@ import Foundation
 
 func isSignIn(apihandler: APIHandler) async -> Bool {
     var ret = false
-    print("hi")
-    guard let token = UserDefaults.standard.string(forKey: "Token") else {
+    guard let _ = UserDefaults.standard.string(forKey: "Token") else {
         return false
     }
     do{

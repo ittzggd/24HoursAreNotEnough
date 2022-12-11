@@ -14,16 +14,20 @@ struct MainView: View {
     @ObservedObject var isSigned: IsSignedIn
     @State var network = false
     @Binding var showMenu: Bool
-    
     @State private var loadData = false
     
     var body: some View {
         VStack {
             if isSigned.isSignIn == false {
-                SignInWebView(
-                    url: URL(string:"https://api.24hoursarenotenough.42seoul.kr/user/login/42?redirect=42")!,
-                    isSigned: isSigned
-                )
+                ZStack{
+                    SignInWebView(
+                        url: URL(string:"https://api.24hoursarenotenough.42seoul.kr/user/login/42?redirect=42")!,
+                        isSigned: isSigned
+                    )
+                    if isSigned.state == .webViewLoading{
+                        isLoading()
+                    }
+                }
             } else if isSigned.isSignIn == true {
                 VStack{
                     if loadData == false {
@@ -73,7 +77,7 @@ struct MainView: View {
                         print("error")
                     }
                     do{
-                        try await apiHandler.getMonthLogs(year: 2022, month: 12)
+                        try await apiHandler.getMonthLogs(year: today.year, month: today.month)
                     } catch {
                         isSigned.isSignIn = false
                         print("error")
