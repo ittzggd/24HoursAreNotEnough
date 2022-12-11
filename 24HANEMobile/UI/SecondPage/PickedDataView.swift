@@ -11,11 +11,12 @@ struct PickedDataView: View {
     var pickedDate = Date()
     var dailyHours: String
     var monthlyHours: String
+    var selectedDate: Int
 
     var body: some View {
         VStack(spacing: -20){
             HStack{
-                Text("Date: \(pickedDate.fullDate)")
+                Text("Date: \(pickedDate.yearMonth).\(selectedDate)")
                     .font(.system(size: 15, weight: .medium, design: .default))
                     .foregroundColor(Color.gray)
                 Spacer()
@@ -32,6 +33,6 @@ struct PickedDataView: View {
 
 struct PickedDataView_Previews: PreviewProvider {
     static var previews: some View {
-        PickedDataView(dailyHours: "", monthlyHours: "")
+        PickedDataView(dailyHours: "", monthlyHours: "", selectedDate: 10)
     }
 }

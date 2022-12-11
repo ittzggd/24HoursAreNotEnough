@@ -21,12 +21,12 @@ struct SignInWebView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView{
         let wkWebView = WKWebView()
         wkWebView.navigationDelegate = context.coordinator
+        let request = URLRequest(url: url)
+        wkWebView.load(request)
         return wkWebView
     }
     
     func updateUIView(_ webView: WKWebView, context: Context){
-        let request = URLRequest(url: url)
-        webView.load(request)
     }
     
     class WebViewCoordinator: NSObject, WKNavigationDelegate {
@@ -38,6 +38,19 @@ struct SignInWebView: UIViewRepresentable {
             self.isSigned = isSigned
             super.init()
         }
+        
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+            if isSigned.state == .webViewHidden{
+                isSigned.state = .webViewLoading
+            } else {
+                isSigned.state = .signInLoading
+            }
+            
+        }
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            isSigned.state = .webViewAppear
+        }
+        
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void){
             let urlToMatch = "/user/login/callback/42"
             if let urlStr = navigationAction.request.url?.path, urlStr == urlToMatch{

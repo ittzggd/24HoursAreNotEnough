@@ -152,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				0EC3427C293A018D00935E97 /* SignInWebView.swift */,
+				0EE69ED0293C91E400189663 /* ViewInfo.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -159,7 +160,6 @@
 		0EC34280293A1F0B00935E97 /* Cookie */ = {
 			isa = PBXGroup;
 			children = (
-				0EE69ED0293C91E400189663 /* ViewInfo.swift */,
 			);
 			name = Cookie;
 			sourceTree = "<group>";

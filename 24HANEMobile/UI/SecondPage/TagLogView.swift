@@ -18,7 +18,6 @@ struct TagLogView: View {
                     .foregroundColor(Color.gray)
                 Spacer()
             }
-            .padding()
             TagLogHeaderView()
             List {
                 ForEach(tagLogData){ logdata in
