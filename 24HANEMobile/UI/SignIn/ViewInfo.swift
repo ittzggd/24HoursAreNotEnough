@@ -28,5 +28,6 @@ class IsSignedIn: ObservableObject {
                 })
         UserDefaults.standard.removeObject(forKey: "Token")
         isSignIn = false
+        state = .webViewHidden
     }
 }
