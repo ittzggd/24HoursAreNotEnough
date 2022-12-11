@@ -61,6 +61,7 @@ struct CalendarView: View {
                                         .background(logTimeColor[dayNum - firstDayofMonth - 1])
                                 }
                             }
+                            .disabled(((dayNum - firstDayofMonth) > today.day) ? true : false)
                         } else {
                             Text("")
                         }

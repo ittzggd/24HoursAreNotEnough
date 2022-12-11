@@ -11,9 +11,9 @@ struct ContentView: View {
     @State var showMenu = false
     @EnvironmentObject var apiHandler: APIHandler
     @ObservedObject var isSignedIn: IsSignedIn
-    @State var network = false
+    @ObservedObject var networkManager = NetworkManager()
     @State var loading = true
-    @State private var showingAlert = !NetworkManager().isConnected
+
     
     var body: some View {
         let drag = DragGesture()
@@ -47,10 +47,16 @@ struct ContentView: View {
             print("signin: \(self.isSignedIn.isSignIn)")
             self.loading = false
         }
-        .alert(isPresented: $showingAlert){
-            Alert(title: Text("Error"), message: Text("Network not connected"),
-            dismissButton: .default(Text("Retry"), action: {
-                network = true
+        .alert(isPresented: $networkManager.showAlert){
+            Alert(title: Text("Error"), message: Text("네트워크 연결 상태를 확인해주세요."),
+            dismissButton: .default(Text("다시시도"), action: {
+                networkManager.monitoringNetwork{ isConnected in
+                    if isConnected {
+                        Task{
+                            self.isSignedIn.isSignIn = await isSignIn(apihandler: apiHandler) ? true : false
+                        }
+                    }
+                }
             }))
         }
     }

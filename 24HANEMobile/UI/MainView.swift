@@ -9,10 +9,10 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var apiHandler: APIHandler
+    @ObservedObject var networkManager = NetworkManager()
     @State private var today = Date()
     @ObservedObject var isSigned: IsSignedIn
     @State var network = false
-    @State private var showingAlert = !NetworkManager().isConnected
     @Binding var showMenu: Bool
     
     @State private var loadData = false
