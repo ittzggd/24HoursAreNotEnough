@@ -32,11 +32,11 @@ struct SideMenuView: View {
                         Image("24HaneLogo")
                             .resizable()
                             .frame(width: 60, height: 50)
-                        Text("\(intraID)")
-                            .font(.system(size: 30, weight: .medium, design: .rounded))
+                        Text(" \(intraID)")
+                            .textCase(.uppercase)
+                            .font(.system(size: 25, weight: .medium, design: .default))
                             .foregroundColor(.textfordata)
                             .font(.headline)
-                            .padding()
                         Spacer()
                     }
                     .padding(.top, 100)
@@ -78,10 +78,10 @@ struct SideMenuView: View {
     }
 }
 
-//struct SideMenuView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SideMenuView(intraID: "hejang") {
-//            print("sidemenu toggle")
-//        }
-//    }
-//}
+struct SideMenuView_Previews: PreviewProvider {
+    static var previews: some View {
+        SideMenuView(isSigned: IsSignedIn(),intraID: "hejang") {
+            print("sidemenu toggle")
+        }
+    }
+}
