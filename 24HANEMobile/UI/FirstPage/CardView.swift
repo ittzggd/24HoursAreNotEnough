@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     @EnvironmentObject var apiHandler: APIHandler
+    @Environment(\.colorScheme) var colorScheme
     @AppStorage("DailySelectionOption") private var dailySelectionOption =  UserDefaults.standard.integer(forKey: "DailySelectionOption")
     @AppStorage("MonthlySelectionOption") private var monthlySelectionOption =  UserDefaults.standard.integer(forKey: "MonthlySelectionOption")
 
@@ -21,7 +22,7 @@ struct CardView: View {
         ZStack{
             RoundedRectangle(cornerRadius: 20)
                 .frame(width: 360, height: 230)
-                .foregroundColor(Color.cardBackground)
+                .foregroundColor(colorScheme == .light ? Color.cardBackground : Color.futureText)
                 .shadow(color: .checkOutGray, radius: 2, x: 3, y: 4)
             HStack{
                 VStack{

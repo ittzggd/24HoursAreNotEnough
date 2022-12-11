@@ -16,7 +16,6 @@ struct SummaryView: View {
     
     var body: some View {
         VStack{
-
             HStack{
                 Text("  24HoursAreNotEnough")
                     .font(.system(size: 20, weight: .light, design: .default))

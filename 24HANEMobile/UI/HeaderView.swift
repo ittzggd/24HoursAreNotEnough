@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HeaderView: View {
     @Environment(\.refresh) private var refresh
+    @Environment(\.colorScheme) var colorScheme
     @Binding var showMenu: Bool
     @State private var isLoading = false
     
@@ -38,7 +39,7 @@ struct HeaderView: View {
                                 Image(systemName: "goforward")
                                     .resizable()
                                     .frame(width: 27, height: 27)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(colorScheme == .light ? .black : .white)
                                     .rotationEffect(.degrees(90))
                             }
                         }
@@ -50,7 +51,7 @@ struct HeaderView: View {
                         Image(systemName: "line.3.horizontal")
                             .resizable()
                             .frame(width: 25, height: 20)
-                            .foregroundColor(.black)
+                            .foregroundColor(colorScheme == .light ? .black : .white)
                     } .padding()
                 }
                 Divider()

@@ -14,31 +14,23 @@ class APIHandler: ObservableObject{
     @Published var monthLogs: perMonth = perMonth.sample
     @Published var accTime: accumationTimes = accumationTimes.sample
     
-    func isLogIn(token: String) -> Bool {
-        let url = "https://api.24hoursarenotenough.42seoul.kr/user/login/islogin"
-        var request = URLRequest(url: URL(string: url)!)
+    func isLogin() async throws -> Bool {
+        guard let url = URL(string: "https://api.24hoursarenotenough.42seoul.kr/user/login/islogin") else {
+            fatalError("MissingURL")
+        }
+        guard let token = UserDefaults.standard.string(forKey: "Token") else {
+            fatalError("UnValid Token")
+        }
+        var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = [
-            "Authorization" : "Bearer \(token)"
+            "Authorization" : "Bearer \(String(describing: token) )"
         ]
-        var isSignIn = false
-        let task = URLSession.shared.dataTask(with: request){(data, response, error) in
-            guard let _ = data, error == nil else {
-                print("error occured [getUserInfo-task]")
-                return
-            }
-            guard let response = response as? HTTPURLResponse else {
-                print("error [getUserInfo - HTTPURLResponse]")
-                return
-            }
-            if response.statusCode == 204 {
-                    isSignIn = true
-            } else {
-               isSignIn = false
-            }
-            
-        }.resume()
-        return isSignIn
+        let (_, response) = try await URLSession.shared.data(for: request)
+        guard (response as? HTTPURLResponse)?.statusCode == 204 else {
+            return false
+        }
+        return true
     }
     
     private func getJsonAsync<T>(_ url: String, type: T.Type) async throws -> T where T : Decodable {
@@ -78,7 +70,6 @@ class APIHandler: ObservableObject{
         let year = URLQueryItem(name: "year", value: "\(year)")
         let month = URLQueryItem(name: "month", value: "\(month)")
         components.queryItems = [year, month]
-        print(components.url!)
         
         monthLogs = try await getJsonAsync(components.url!.absoluteString, type: perMonth.self)
     }

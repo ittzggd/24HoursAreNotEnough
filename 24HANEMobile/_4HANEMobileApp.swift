@@ -10,6 +10,9 @@ import SwiftUI
 
 @main
 struct _4HANEMobileApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var isSigned = IsSignedIn()
     var apiHandler = APIHandler()
     var body: some Scene {
@@ -17,6 +20,9 @@ struct _4HANEMobileApp: App {
             ContentView(isSignedIn: IsSignedIn())
                 .environmentObject(isSigned)
                 .environmentObject(apiHandler)
+                .onAppear{
+                    print("hi")
+                }
         }
     }
 }

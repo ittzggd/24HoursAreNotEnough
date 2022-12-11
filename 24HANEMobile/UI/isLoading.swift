@@ -11,7 +11,7 @@ struct isLoading: View {
     var body: some View {
         VStack(spacing: 40){
             ProgressView()
-                .scaleEffect(3)
+                .scaleEffect(2)
             HStack{
                 Text("Loading....")
                     .font(.system(size: 25, weight: .medium, design: .default))

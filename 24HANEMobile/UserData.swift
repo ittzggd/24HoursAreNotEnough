@@ -7,9 +7,16 @@
 
 import Foundation
 
-func isSignIn(apihandler: APIHandler) -> Bool {
+func isSignIn(apihandler: APIHandler) async -> Bool {
+    var ret = false
+    print("hi")
     guard let token = UserDefaults.standard.string(forKey: "Token") else {
         return false
     }
-    return apihandler.isLogIn(token: token)
+    do{
+        ret = try await apihandler.isLogin()
+    } catch {
+        print("error")
+    }
+    return ret
 }

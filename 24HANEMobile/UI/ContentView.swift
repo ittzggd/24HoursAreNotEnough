@@ -12,6 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var apiHandler: APIHandler
     @ObservedObject var isSignedIn: IsSignedIn
     @State var network = false
+    @State var loading = true
     @State private var showingAlert = !NetworkManager().isConnected
     
     var body: some View {
@@ -23,22 +24,28 @@ struct ContentView: View {
                         }
                     }
         VStack{
-            GeometryReader{ geometry in
-                ZStack(alignment: .trailing){
-                    MainView(isSigned: isSignedIn, showMenu: $showMenu)
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                    if self.showMenu {
-                        SideMenuView(isSigned: isSignedIn, intraID: apiHandler.userInfo.login) {
-                            self.showMenu.toggle()
-                        }
+            if loading == true {
+                isLoading()
+            } else {
+                GeometryReader{ geometry in
+                    ZStack(alignment: .trailing){
+                        MainView(isSigned: isSignedIn, showMenu: $showMenu)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                        if self.showMenu {
+                            SideMenuView(isSigned: isSignedIn, intraID: apiHandler.userInfo.login) {
+                                self.showMenu.toggle()
+                            }
                             .transition(.move(edge: .trailing))
+                        }
                     }
+                    .gesture(drag)
                 }
-                .gesture(drag)
             }
         }
         .task{
-            self.isSignedIn.isSignIn = isSignIn(apihandler: apiHandler) ? true : false
+            self.isSignedIn.isSignIn = await isSignIn(apihandler: apiHandler) ? true : false
+            print("signin: \(self.isSignedIn.isSignIn)")
+            self.loading = false
         }
         .alert(isPresented: $showingAlert){
             Alert(title: Text("Error"), message: Text("Network not connected"),
