@@ -25,17 +25,15 @@ struct CardView: View {
                 .foregroundColor(colorScheme == .light ? Color.cardBackground : Color.futureText)
                 .shadow(color: .checkOutGray, radius: 2, x: 3, y: 4)
             HStack{
-                VStack{
+                VStack {
                     Text("누적시간")
                         .font(.system(size: 17, weight: .regular, design: .rounded))
                         .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
                     Text("\(parseAccumulationTime(type: type, date: currentTime))")
                         .font(.system(size: 38, weight: .medium, design: .default))
                         .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
-                        .padding(-2)
+                        .padding(10)
                         .fixedSize(horizontal: true, vertical: false)
-                    Text("")
-                        .padding(-5)
                     Text("목표시간")
                         .font(.system(size: 17, weight: .regular, design: .rounded))
                         .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
@@ -62,6 +60,7 @@ struct CardView: View {
                     .padding(10)
                 }
                 .padding()
+                .frame(width: 180, height: 230)
                 Divider()
                     .frame(height: 50)
                     .background(Color.black)
