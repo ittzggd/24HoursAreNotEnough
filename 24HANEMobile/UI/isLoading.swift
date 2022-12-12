@@ -18,7 +18,7 @@ struct isLoading: View {
                     .font(.system(size: 25, weight: .medium, design: .default))
                     .foregroundColor(Color.gray)
                 Image(systemName: "tortoise.fill")
-                    .offset(x: isLoading ? 40 : 10, y: 0)
+                    .offset(x: isLoading ? 40 : 0, y: 0)
                     .animation(Animation.linear(duration: 3).repeatForever(autoreverses: false))
                     .foregroundColor(Color.LogoColor)
             }

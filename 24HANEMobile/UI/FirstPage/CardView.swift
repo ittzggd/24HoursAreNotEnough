@@ -25,13 +25,14 @@ struct CardView: View {
                 .foregroundColor(colorScheme == .light ? Color.cardBackground : Color.futureText)
                 .shadow(color: .checkOutGray, radius: 2, x: 3, y: 4)
             HStack{
-                VStack{
+                VStack(alignment: .center){
                     Text("누적시간")
                         .font(.system(size: 17, weight: .regular, design: .rounded))
                         .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
-                    Text("\(parseAccumulationTime(type: type, date: currentTime))")
+                    Text("\(parseAccumulationTime(type: type, date: currentTime))  ")
                         .font(.system(size: 38, weight: .medium, design: .default))
                         .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
+                        .fixedSize(horizontal: true, vertical: false)
                         .padding(-2)
                     Text("")
                         .padding(-5)
@@ -48,6 +49,7 @@ struct CardView: View {
                         Text("\(Int(options[(type == "day") ? dailySelectionOption : monthlySelectionOption])) : 00")
                             .font(.system(size: 35, weight: .medium, design: .default))
                             .foregroundColor((apiHandler.userInfo.inoutState == "IN") ? Color.textfordata : Color.checkOutGray)
+                            .fixedSize(horizontal: true, vertical: false)
                             .onAppear(){
                                  (type == "day") ?
                                     UserDefaults.standard.setValue(dailySelectionOption, forKey: "DailySelectionOption") :
@@ -59,6 +61,7 @@ struct CardView: View {
                     }
                 }
                 .padding()
+                .frame(width: 130)
                 Divider()
                     .frame(height: 50)
                     .background(Color.black)
